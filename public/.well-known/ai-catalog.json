@@ -1,0 +1,16 @@
+{
+  "specVersion": "1.0",
+  "entries": [
+    {
+      "identifier": "urn:air:seusiteunico:docs:llms",
+      "displayName": "Documentacao para IAs do Seu Site Unico",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
+      "url": "https://seusite-unico.vercel.app/llms.txt",
+      "representativeQueries": [
+        "Como funciona o metodo Seu Site Unico?",
+        "Quais as ferramentas de IA usadas no treinamento?",
+        "Quais sao os planos e garantias do Seu Site Unico?"
+      ]
+    }
+  ]
+}
