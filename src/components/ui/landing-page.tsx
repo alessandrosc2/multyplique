@@ -73,29 +73,29 @@ export function ScrollGlobe({
   const methodSections: MethodSection[] = useMemo(() => sections || [
     {
       id: "fase-1-construir",
-      badge: "Fase 01 — Construir",
-      title: "O seu cliente pesquisa no Google, mas quem vende é a concorrência.",
-      subtitle: "Tenha um site profissional gerado por IA em minutos e pare de perder vendas.",
-      description: "Esqueça modelos genéricos. O formulário guiado extrai os diferenciais, serviços e estilo visual da sua empresa para criar prompts de IA sob medida.",
+      badge: "Site-IA por Multy Technology • +40% Receita Média",
+      title: "Multiplique seu faturamento e apresente sua empresa profissionalmente.",
+      subtitle: "Pare de perder clientes no Google para a concorrência.",
+      description: "97% dos consumidores pesquisam no Google antes de comprar ou contratar. Se você depende apenas de redes sociais ou indicação, está deixando vendas na mesa todos os dias. Crie um site de alta conversão gerado com IA e transforme pesquisas em orçamentos no seu WhatsApp.",
       align: "left",
       icon: <Sparkles className="w-5 h-5 text-cyan-400" />,
       features: [
         { 
-          title: "Briefing Mestre Inteligente", 
-          description: "Reúne nome, diferenciais, público, horários e links do seu negócio sem complicação técnica." 
+          title: "+40% de Receita Média", 
+          description: "Pesquisas Verisign e Deloitte comprovam que negócios com presença web estruturada fecham mais vendas." 
         },
         { 
-          title: "Prompts Prontos de Alta Conversão", 
-          description: "Copywriting persuasivo e design exclusivo gerados por inteligência artificial com a cara da sua marca." 
+          title: "Credibilidade Imediata (Estudo Stanford)", 
+          description: "75% dos consumidores julgam a legitimidade e o profissionalismo de uma empresa pelo site." 
         },
         { 
-          title: "Revisão Mobile-First", 
-          description: "Garantia de layout impecável e botões clicáveis em todos os smartphones." 
+          title: "Pronto em Minutos com Inteligência Artificial", 
+          description: "Sem precisar programar, sem modelos genéricos e 100% otimizado para o Google e smartphones." 
         }
       ],
       actions: [
         { 
-          label: "Quero Dominar o Google", 
+          label: "Quero Multiplicar Meu Faturamento", 
           variant: "primary", 
           onClick: () => {
             const el = document.getElementById("pricing");
@@ -103,10 +103,10 @@ export function ScrollGlobe({
           } 
         },
         { 
-          label: "Ver Nichos Atendidos", 
+          label: "Ver Como Funciona", 
           variant: "secondary", 
           onClick: () => {
-            const el = document.getElementById("nichos");
+            const el = document.getElementById("metodo");
             if (el) el.scrollIntoView({ behavior: "smooth" });
           } 
         }
@@ -290,13 +290,16 @@ export function ScrollGlobe({
       {/* Top Site Header Navigation */}
       <header className="fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 flex items-center justify-between px-4 sm:px-8 lg:px-12 bg-[#070d1e]/90 backdrop-blur-md border-b border-white/10">
         <a href="#metodo" className="flex items-center gap-2.5 sm:gap-3.5 group cursor-pointer shrink-0">
-          <img width="160" height="40" src="/logo-site.webp" 
-            alt="Logo Seu Site Único" 
-            className="w-9 h-9 sm:w-11 sm:h-11 object-contain group-hover:scale-105 transition-transform" 
+          <img 
+            src="/logo-multy.png" 
+            alt="Multy Technology" 
+            className="h-8 sm:h-10 w-auto object-contain group-hover:scale-105 transition-transform" 
           />
-          <span className="font-bold text-lg sm:text-xl tracking-tight text-white group-hover:text-cyan-300 transition-colors whitespace-nowrap">
-            Seu Site <span className="text-cyan-400">Único</span>
-          </span>
+          <div className="h-5 w-px bg-white/20 hidden sm:block" />
+          <div className="flex items-center gap-1.5 bg-cyan-950/70 border border-cyan-500/30 px-2.5 py-1 rounded-full text-xs font-semibold text-cyan-300">
+            <img src="/logo-siteia.png" alt="Site-IA" className="w-4 h-4 object-contain" />
+            <span>Site-IA</span>
+          </div>
         </a>
 
         {/* Desktop Navigation */}

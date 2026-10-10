@@ -44,16 +44,19 @@ export default function App() {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-white/5">
             <div>
               <div className="flex items-center gap-3.5 mb-2.5">
-                <img width="160" height="40" src="/logo-site.webp" 
-                  alt="Seu Site Único" 
-                  className="w-14 h-14 object-contain" 
+                <img 
+                  src="/logo-multy.png" 
+                  alt="Multy Technology" 
+                  className="h-10 sm:h-12 w-auto object-contain" 
                 />
-                <span className="font-normal text-2xl tracking-tight text-white">
-                  Seu Site <span className="text-cyan-400">Único</span>
-                </span>
+                <div className="h-6 w-px bg-white/20" />
+                <div className="flex items-center gap-2 bg-cyan-950/70 border border-cyan-500/30 px-3 py-1 rounded-full text-xs font-semibold text-cyan-300">
+                  <img src="/logo-siteia.png" alt="Site-IA" className="w-4 h-4 object-contain" />
+                  <span>Site-IA</span>
+                </div>
               </div>
               <p className="text-sm text-slate-300 max-w-md leading-relaxed">
-                Método guiado com Inteligência Artificial para pequenos negócios e profissionais que desejam presença profissional na internet e faturamento com criação de sites locais.
+                Site-IA é um produto da Multy Technology. Método guiado com Inteligência Artificial para empresas e profissionais multiplicarem seu faturamento com presença profissional na internet.
               </p>
             </div>
 
@@ -78,7 +81,7 @@ export default function App() {
 
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-500">
             <div className="flex flex-col gap-3">
-              <p>© {new Date().getFullYear()} Seu Site Único. Todos os direitos reservados.</p>
+              <p>© {new Date().getFullYear()} Multy Technology • Site-IA. Todos os direitos reservados.</p>
               <div className="flex flex-wrap items-center gap-4 text-slate-400">
                 <Link to="/termos-de-uso" className="hover:text-cyan-400 transition-colors underline underline-offset-2">Termos de Uso</Link>
                 <Link to="/politica-de-privacidade" className="hover:text-cyan-400 transition-colors underline underline-offset-2">Política de Privacidade (LGPD)</Link>
