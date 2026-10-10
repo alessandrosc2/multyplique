@@ -77,9 +77,14 @@ export default function App() {
           </div>
 
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-500">
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 items-center sm:items-start">
+              <img 
+                src="/logo-multy.png" 
+                alt="Multy Technology" 
+                className="w-24 sm:w-28 h-auto object-contain opacity-95 hover:opacity-100 transition-opacity mb-0.5" 
+              />
               <p>© 2026 Multy Technology - Site-IA. Todos os direitos reservados.</p>
-              <div className="flex flex-wrap items-center gap-4 text-slate-400">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-slate-400">
                 <Link to="/termos-de-uso" className="hover:text-cyan-400 transition-colors underline underline-offset-2">Termos de Uso</Link>
                 <Link to="/politica-de-privacidade" className="hover:text-cyan-400 transition-colors underline underline-offset-2">Política de Privacidade (LGPD)</Link>
                 <Link to="/politica-de-reembolso" className="hover:text-cyan-400 transition-colors underline underline-offset-2">Reembolso e Garantia</Link>
