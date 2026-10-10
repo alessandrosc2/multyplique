@@ -76,7 +76,7 @@ export function ScrollGlobe({
       badge: "Site-IA • +40% Receita Média Comprovada",
       title: "Multiplique seu faturamento e apresente sua empresa profissionalmente.",
       subtitle: "Pare de perder clientes no Google para a concorrência.",
-      description: "97% dos consumidores pesquisam no Google antes de comprar ou contratar. Se você depende apenas de redes sociais ou indicação, está deixando vendas na mesa todos os dias. Crie um site de alta conversão gerado com IA e transforme pesquisas em orçamentos no seu WhatsApp.",
+      description: "Levantamentos mostram que empresas com site faturam em média 40% a mais que empresas sem um site.",
       align: "left",
       icon: <Sparkles className="w-5 h-5 text-cyan-400" />,
       features: [
