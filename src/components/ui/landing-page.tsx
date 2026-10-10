@@ -73,7 +73,7 @@ export function ScrollGlobe({
   const methodSections: MethodSection[] = useMemo(() => sections || [
     {
       id: "fase-1-construir",
-      badge: "Site-IA por Multy Technology • +40% Receita Média",
+      badge: "Site-IA • +40% Receita Média Comprovada",
       title: "Multiplique seu faturamento e apresente sua empresa profissionalmente.",
       subtitle: "Pare de perder clientes no Google para a concorrência.",
       description: "97% dos consumidores pesquisam no Google antes de comprar ou contratar. Se você depende apenas de redes sociais ou indicação, está deixando vendas na mesa todos os dias. Crie um site de alta conversão gerado com IA e transforme pesquisas em orçamentos no seu WhatsApp.",
@@ -290,16 +290,13 @@ export function ScrollGlobe({
       {/* Top Site Header Navigation */}
       <header className="fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 flex items-center justify-between px-4 sm:px-8 lg:px-12 bg-[#070d1e]/90 backdrop-blur-md border-b border-white/10">
         <a href="#metodo" className="flex items-center gap-2.5 sm:gap-3.5 group cursor-pointer shrink-0">
-          <img 
-            src="/logo-multy.png" 
-            alt="Multy Technology" 
-            className="h-8 sm:h-10 w-auto object-contain group-hover:scale-105 transition-transform" 
+          <img width="160" height="40" src="/logo-site.webp" 
+            alt="Site-IA" 
+            className="w-9 h-9 sm:w-11 sm:h-11 object-contain group-hover:scale-105 transition-transform" 
           />
-          <div className="h-5 w-px bg-white/20 hidden sm:block" />
-          <div className="flex items-center gap-1.5 bg-cyan-950/70 border border-cyan-500/30 px-2.5 py-1 rounded-full text-xs font-semibold text-cyan-300">
-            <img src="/logo-siteia.png" alt="Site-IA" className="w-4 h-4 object-contain" />
-            <span>Site-IA</span>
-          </div>
+          <span className="font-bold text-lg sm:text-xl tracking-tight text-white group-hover:text-cyan-300 transition-colors whitespace-nowrap">
+            Site-<span className="text-cyan-400">IA</span>
+          </span>
         </a>
 
         {/* Desktop Navigation */}

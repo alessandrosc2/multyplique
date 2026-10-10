@@ -44,19 +44,16 @@ export default function App() {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-white/5">
             <div>
               <div className="flex items-center gap-3.5 mb-2.5">
-                <img 
-                  src="/logo-multy.png" 
-                  alt="Multy Technology" 
-                  className="h-10 sm:h-12 w-auto object-contain" 
+                <img width="160" height="40" src="/logo-site.webp" 
+                  alt="Site-IA" 
+                  className="w-14 h-14 object-contain" 
                 />
-                <div className="h-6 w-px bg-white/20" />
-                <div className="flex items-center gap-2 bg-cyan-950/70 border border-cyan-500/30 px-3 py-1 rounded-full text-xs font-semibold text-cyan-300">
-                  <img src="/logo-siteia.png" alt="Site-IA" className="w-4 h-4 object-contain" />
-                  <span>Site-IA</span>
-                </div>
+                <span className="font-normal text-2xl tracking-tight text-white">
+                  Site-<span className="text-cyan-400">IA</span>
+                </span>
               </div>
               <p className="text-sm text-slate-300 max-w-md leading-relaxed">
-                Site-IA é um produto da Multy Technology. Método guiado com Inteligência Artificial para empresas e profissionais multiplicarem seu faturamento com presença profissional na internet.
+                Método guiado com Inteligência Artificial para pequenas empresas e profissionais multiplicarem seu faturamento com presença profissional na internet e no Google.
               </p>
             </div>
 
@@ -67,7 +64,7 @@ export default function App() {
               <a href="#calculadora" className="hover:text-cyan-400 transition-colors">Calculadora</a>
               <a href="#pricing" className="hover:text-cyan-400 transition-colors">Planos</a>
               <a
-                href="https://wa.me/5583993595124?text=Ol%C3%A1!%20Tenho%20d%C3%BAvidas%20sobre%20o%20Seu%20Site%20%C3%9Anico."
+                href="https://wa.me/5583993595124?text=Ol%C3%A1!%20Tenho%20d%C3%BAvidas%20sobre%20o%20Site-IA."
                 target="_blank"
                 rel="noopener noreferrer"
                   onClick={() => { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'whatsapp_click', location: 'footer' }); }}
@@ -81,7 +78,7 @@ export default function App() {
 
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-500">
             <div className="flex flex-col gap-3">
-              <p>© {new Date().getFullYear()} Multy Technology • Site-IA. Todos os direitos reservados.</p>
+              <p>© {new Date().getFullYear()} Site-IA. Todos os direitos reservados.</p>
               <div className="flex flex-wrap items-center gap-4 text-slate-400">
                 <Link to="/termos-de-uso" className="hover:text-cyan-400 transition-colors underline underline-offset-2">Termos de Uso</Link>
                 <Link to="/politica-de-privacidade" className="hover:text-cyan-400 transition-colors underline underline-offset-2">Política de Privacidade (LGPD)</Link>
