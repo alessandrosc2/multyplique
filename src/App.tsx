@@ -78,7 +78,7 @@ export default function App() {
 
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-500">
             <div className="flex flex-col gap-3">
-              <p>© {new Date().getFullYear()} Site-IA. Todos os direitos reservados.</p>
+              <p>© 2026 Multy Technology - Site-IA. Todos os direitos reservados.</p>
               <div className="flex flex-wrap items-center gap-4 text-slate-400">
                 <Link to="/termos-de-uso" className="hover:text-cyan-400 transition-colors underline underline-offset-2">Termos de Uso</Link>
                 <Link to="/politica-de-privacidade" className="hover:text-cyan-400 transition-colors underline underline-offset-2">Política de Privacidade (LGPD)</Link>
