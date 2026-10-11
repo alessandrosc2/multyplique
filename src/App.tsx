@@ -6,7 +6,7 @@ import { ConversionScienceSection } from "@/components/analytics/ConversionScien
 import { InteractiveSelector } from "@/components/ui/interactive-selector";
 import { AudienceSwitcher } from "@/components/scrollytelling/AudienceSwitcher";
 import { PricingSection } from "@/components/pricing/PricingSection";
-import { ShieldCheck, Heart, Sparkles, MessageCircle } from "lucide-react";
+import { ShieldCheck, Heart, Sparkles, MessageCircle, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function App() {
@@ -57,22 +57,35 @@ export default function App() {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-6 text-sm text-slate-300">
-              <a href="#metodo" className="hover:text-cyan-400 transition-colors">O Método</a>
-              <a href="#nichos" className="hover:text-cyan-400 transition-colors">Nichos</a>
-              <a href="#dados-conversao" className="hover:text-cyan-400 transition-colors">Por Que Ter Site</a>
-              <a href="#calculadora" className="hover:text-cyan-400 transition-colors">Calculadora</a>
-              <a href="#pricing" className="hover:text-cyan-400 transition-colors">Planos</a>
-              <a
-                href="https://wa.me/5583993595124?text=Ol%C3%A1!%20Tenho%20d%C3%BAvidas%20sobre%20o%20Site-IA."
-                target="_blank"
-                rel="noopener noreferrer"
+            <div className="flex flex-col items-start md:items-end gap-5">
+              <div className="flex flex-wrap items-center gap-6 text-sm text-slate-300">
+                <a href="#metodo" className="hover:text-cyan-400 transition-colors">O Método</a>
+                <a href="#nichos" className="hover:text-cyan-400 transition-colors">Nichos</a>
+                <a href="#dados-conversao" className="hover:text-cyan-400 transition-colors">Por Que Ter Site</a>
+                <a href="#calculadora" className="hover:text-cyan-400 transition-colors">Calculadora</a>
+                <a href="#pricing" className="hover:text-cyan-400 transition-colors">Planos</a>
+              </div>
+
+              {/* Contatos Oficiais */}
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm">
+                <a
+                  href="https://wa.me/5583993595124?text=Ol%C3%A1!%20Tenho%20d%C3%BAvidas%20sobre%20o%20Site-IA."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'whatsapp_click', location: 'footer' }); }}
-                  className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
-              >
-                <MessageCircle className="w-3.5 h-3.5" />
-                Suporte no WhatsApp
-              </a>
+                  className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors font-medium bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-full"
+                >
+                  <MessageCircle className="w-4 h-4 text-emerald-400" />
+                  <span>WhatsApp: (83) 99359-5124</span>
+                </a>
+                <a
+                  href="mailto:suporte@multyplique.com.br"
+                  className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors font-medium bg-cyan-950/50 border border-cyan-500/30 px-3.5 py-1.5 rounded-full"
+                >
+                  <Mail className="w-4 h-4 text-cyan-400" />
+                  <span>suporte@multyplique.com.br</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -100,6 +113,26 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/5583993595124?text=Ol%C3%A1!%20Gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20o%20Site-IA."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Fale conosco no WhatsApp"
+        onClick={() => {
+          (window as any).dataLayer = (window as any).dataLayer || [];
+          (window as any).dataLayer.push({ event: 'whatsapp_click', location: 'floating_button' });
+        }}
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm rounded-full shadow-2xl shadow-emerald-500/40 hover:scale-105 active:scale-95 transition-all group cursor-pointer"
+      >
+        <span className="relative flex h-2.5 w-2.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-950 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-950"></span>
+        </span>
+        <MessageCircle className="w-5 h-5 fill-slate-950 stroke-emerald-500 group-hover:scale-110 transition-transform" />
+        <span className="hidden sm:inline">WhatsApp: (83) 99359-5124</span>
+      </a>
     </main>
   );
 }

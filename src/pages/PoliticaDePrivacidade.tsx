@@ -13,7 +13,7 @@ export default function PoliticaDePrivacidade() {
         <div className="space-y-6 text-slate-300 leading-relaxed text-sm sm:text-base">
           <p>Última atualização: {new Date().toLocaleDateString('pt-BR')}</p>
           <p>
-            No Seu Site Único, a privacidade e a segurança dos seus dados são nossa prioridade. Esta política foi criada em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD) - Lei nº 13.709/2018.
+            No <strong>Site-IA (Multy Technology)</strong>, a privacidade e a segurança dos seus dados são nossa prioridade. Esta política foi criada em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD) - Lei nº 13.709/2018.
           </p>
           
           <h2 className="text-xl font-semibold text-white mt-8">1. Coleta de Dados</h2>
@@ -23,7 +23,7 @@ export default function PoliticaDePrivacidade() {
           <p>Seus dados são utilizados para:</p>
           <ul className="list-disc pl-5 space-y-2">
             <li>Processar transações e enviar o acesso ao produto adquirido.</li>
-            <li>Fornecer suporte via e-mail ou WhatsApp.</li>
+            <li>Fornecer suporte via e-mail (suporte@multyplique.com.br) ou WhatsApp ((83) 99359-5124).</li>
             <li>Melhorar sua experiência no site.</li>
             <li>Enviar comunicações sobre atualizações, novidades ou recuperação de compras.</li>
           </ul>
@@ -31,8 +31,8 @@ export default function PoliticaDePrivacidade() {
           <h2 className="text-xl font-semibold text-white mt-8">3. Proteção e Segurança</h2>
           <p>Nossos pagamentos são processados exclusivamente pelo <strong>Mercado Pago</strong>, uma plataforma de altíssima segurança. Não armazenamos seus dados de cartão de crédito em nossos servidores.</p>
 
-          <h2 className="text-xl font-semibold text-white mt-8">4. Seus Direitos (LGPD)</h2>
-          <p>Como titular dos dados, você tem o direito de solicitar o acesso, a correção ou a exclusão dos seus dados pessoais da nossa base. Para solicitar qualquer ação relacionada aos seus dados, entre em contato através do nosso WhatsApp oficial de suporte.</p>
+          <h2 className="text-xl font-semibold text-white mt-8">4. Seus Direitos (LGPD) e Contato</h2>
+          <p>Como titular dos dados, você tem o direito de solicitar o acesso, a correção ou a exclusão dos seus dados pessoais da nossa base. Para solicitar qualquer ação relacionada aos seus dados, entre em contato através do nosso WhatsApp oficial: <strong>(83) 99359-5124</strong> ou pelo e-mail: <strong>suporte@multyplique.com.br</strong>.</p>
         </div>
       </div>
     </div>

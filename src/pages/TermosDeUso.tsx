@@ -13,19 +13,19 @@ export default function TermosDeUso() {
         <div className="space-y-6 text-slate-300 leading-relaxed text-sm sm:text-base">
           <p>Última atualização: {new Date().toLocaleDateString('pt-BR')}</p>
           <p>
-            Bem-vindo(a) ao Seu Site Único. Ao acessar e utilizar este site, você concorda em cumprir os presentes Termos de Uso. Leia atentamente.
+            Bem-vindo(a) ao <strong>Site-IA (Multy Technology)</strong>. Ao acessar e utilizar este site, você concorda em cumprir os presentes Termos de Uso. Leia atentamente.
           </p>
           <h2 className="text-xl font-semibold text-white mt-8">1. Aceitação dos Termos</h2>
           <p>Ao adquirir ou utilizar nossos serviços e produtos digitais, você concorda legalmente com estes termos, bem como com a nossa Política de Privacidade.</p>
           
           <h2 className="text-xl font-semibold text-white mt-8">2. O Serviço</h2>
-          <p>O Seu Site Único oferece um método e treinamentos focados na criação de sites e posicionamento digital utilizando Inteligência Artificial. Os resultados obtidos dependem da dedicação exclusiva do aluno, e as estimativas de ganhos são projeções e não garantias absolutas.</p>
+          <p>O Site-IA oferece um método e treinamentos focados na criação de sites e posicionamento digital utilizando Inteligência Artificial. Os resultados obtidos dependem da aplicação prática das orientações fornecidas.</p>
 
           <h2 className="text-xl font-semibold text-white mt-8">3. Propriedade Intelectual</h2>
-          <p>Todo o conteúdo disponível no método, incluindo prompts, textos, layouts, códigos e tutoriais, são de propriedade intelectual exclusiva do Seu Site Único, sendo expressamente proibida a revenda, pirataria ou distribuição não autorizada.</p>
+          <p>Todo o conteúdo disponível no método, incluindo prompts, textos, layouts, códigos e tutoriais, são de propriedade intelectual exclusiva da Multy Technology / Site-IA, sendo expressamente proibida a revenda, pirataria ou distribuição não autorizada.</p>
 
-          <h2 className="text-xl font-semibold text-white mt-8">4. Acesso ao Produto</h2>
-          <p>O acesso ao método é vitalício enquanto a plataforma existir (mínimo garantido de 1 ano). O compartilhamento de senhas é proibido e poderá resultar no cancelamento do acesso sem aviso prévio.</p>
+          <h2 className="text-xl font-semibold text-white mt-8">4. Acesso ao Produto e Suporte</h2>
+          <p>O acesso ao método é vitalício enquanto a plataforma existir (mínimo garantido de 1 ano). Para dúvidas, suporte técnico ou comercial, entre em contato pelo WhatsApp <strong>(83) 99359-5124</strong> ou pelo e-mail <strong>suporte@multyplique.com.br</strong>.</p>
         </div>
       </div>
     </div>

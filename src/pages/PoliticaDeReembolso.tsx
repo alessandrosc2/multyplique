@@ -14,13 +14,13 @@ export default function PoliticaDeReembolso() {
           <p>Última atualização: {new Date().toLocaleDateString('pt-BR')}</p>
           
           <h2 className="text-xl font-semibold text-white mt-8">Garantia Blindada de 7 Dias</h2>
-          <p>No <strong>Seu Site Único</strong>, nós temos absoluta confiança na qualidade do nosso método e do material que estamos entregando a você.</p>
+          <p>No <strong>Site-IA (Multy Technology)</strong>, nós temos absoluta confiança na qualidade do nosso método e do material que estamos entregando a você.</p>
           <p>De acordo com o Art. 49 do Código de Defesa do Consumidor (CDC), você possui o direito de arrependimento da compra de produtos digitais no prazo legal de 7 (sete) dias corridos a partir da data de liberação do acesso.</p>
           
           <h2 className="text-xl font-semibold text-white mt-8">Como solicitar o reembolso?</h2>
           <p>Caso você não se adapte ao método, ache que não é o momento certo ou simplesmente se arrependa da compra, você pode solicitar a devolução de 100% do seu dinheiro, sem letras miúdas ou burocracias.</p>
           <ul className="list-disc pl-5 space-y-2">
-            <li>A solicitação deve ser feita exclusivamente através do e-mail de suporte ou WhatsApp oficial no prazo de até 7 dias corridos após o pagamento.</li>
+            <li>A solicitação deve ser feita exclusivamente através do nosso e-mail oficial (<strong>suporte@multyplique.com.br</strong>) ou pelo WhatsApp (<strong>(83) 99359-5124</strong>) no prazo de até 7 dias corridos após o pagamento.</li>
             <li>Ao solicitar o reembolso, o acesso à Área de Membros e a todo o material será imediatamente bloqueado.</li>
             <li>O valor é reembolsado pela mesma plataforma que processou o pagamento (Mercado Pago), podendo levar alguns dias úteis para aparecer no seu extrato ou fatura, a depender do método de pagamento e do seu banco.</li>
           </ul>

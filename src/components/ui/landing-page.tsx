@@ -15,7 +15,8 @@ import {
   Copy,
   ExternalLink,
   Menu,
-  X
+  X,
+  MessageCircle
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -383,13 +384,23 @@ export function ScrollGlobe({
             </a>
           </nav>
 
-          <div className="pt-6 pb-4">
+          <div className="pt-6 pb-4 space-y-2.5">
             <a
               href="#pricing"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full block text-center py-3.5 px-6 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-sm shadow-lg shadow-cyan-500/25"
             >
               Ver Planos e Começar
+            </a>
+            <a
+              href="https://wa.me/5583993595124?text=Ol%C3%A1!%20Tenho%20d%C3%BAvidas%20sobre%20o%20Site-IA."
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>WhatsApp: (83) 99359-5124</span>
             </a>
           </div>
         </div>
