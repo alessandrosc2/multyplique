@@ -1,6 +1,5 @@
 import { Toaster } from "sonner";
 import { ScrollGlobe } from "@/components/ui/landing-page";
-import { ChoiceSection } from "@/components/ui/ChoiceSection";
 import { SocialProofSection } from "@/components/pricing/SocialProofSection";
 import { WordRevealSection } from "@/components/scrollytelling/WordRevealSection";
 import { ConversionScienceSection } from "@/components/analytics/ConversionScienceSection";
@@ -15,11 +14,8 @@ export default function App() {
     <main className="w-full min-h-screen bg-[#070d1e] text-white selection:bg-cyan-500 selection:text-slate-950 font-sans">
       <Toaster position="top-right" richColors theme="dark" />
 
-      {/* Beat 1: O Método Guiado das 4 Fases com o Globo 3D em Scrollytelling */}
+      {/* Beat 1: O Método em Scrollytelling com Globo 3D e Blocos Narrados */}
       <ScrollGlobe />
-
-      {/* Beat 2: Interesse & Sustentação — As Duas Opções: Crie com IA ou Risco Zero */}
-      <ChoiceSection />
 
       <SocialProofSection />
 

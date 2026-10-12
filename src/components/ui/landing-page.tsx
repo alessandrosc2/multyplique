@@ -27,8 +27,9 @@ export interface MethodFeature {
 
 export interface MethodAction {
   label: string;
-  variant: "primary" | "secondary";
+  variant: "primary" | "secondary" | "whatsapp";
   onClick?: () => void;
+  href?: string;
 }
 
 export interface MethodSection {
@@ -57,10 +58,10 @@ export interface ScrollGlobeProps {
 
 const defaultGlobeConfig = {
   positions: [
-    { top: "50%", left: "75%", scale: 1.35 },  // Hero / Fase 1: Right side
-    { top: "22%", left: "50%", scale: 1.0 },   // Fase 2: Top Center (Screenshot 1)
-    { top: "50%", left: "85%", scale: 1.65 },  // Fase 3: Right side large (Screenshot 2)
-    { top: "50%", left: "50%", scale: 2.1 },   // Fase 4: Center backdrop (Screenshot 3)
+    { top: "50%", left: "75%", scale: 1.35 },  // Bloco 01 (Hero): Right side
+    { top: "50%", left: "82%", scale: 1.25 },  // Bloco 02: Right side (deixa a esquerda ampla para o conteúdo de Risco Zero)
+    { top: "25%", left: "50%", scale: 0.95 },  // Bloco 03: Top Center
+    { top: "50%", left: "50%", scale: 2.1 },   // Bloco 04: Center backdrop
   ]
 };
 
@@ -73,8 +74,8 @@ export function ScrollGlobe({
 }: ScrollGlobeProps) {
   const methodSections: MethodSection[] = useMemo(() => sections || [
     {
-      id: "fase-1-construir",
-      badge: "Site-IA • +40% Receita Média Comprovada",
+      id: "bloco-1-diagnostico",
+      badge: "Bloco 01 • +40% Receita Média Comprovada",
       title: "Multiplique seu faturamento e apresente sua empresa profissionalmente.",
       subtitle: "Pare de perder clientes no Google para a concorrência.",
       description: "Levantamentos mostram que empresas com site faturam em média 40% a mais que empresas sem um site.",
@@ -90,56 +91,79 @@ export function ScrollGlobe({
           description: "75% dos consumidores julgam a legitimidade e o profissionalismo de uma empresa pelo site." 
         },
         { 
-          title: "Pronto em Minutos com Inteligência Artificial", 
-          description: "Sem precisar programar, sem modelos genéricos e 100% otimizado para o Google e smartphones." 
+          title: "Presença Sob Medida & Mobile-First", 
+          description: "Sem modelos genéricos e 100% otimizado para o Google e smartphones." 
         }
       ],
       actions: [
         { 
-          label: "Quero Multiplicar Meu Faturamento", 
+          label: "Quero Meu Site Profissional", 
           variant: "primary", 
           onClick: () => {
-            const el = document.getElementById("pricing");
+            const el = document.getElementById("bloco-2-risco-zero");
             if (el) el.scrollIntoView({ behavior: "smooth" });
           } 
         },
         { 
-          label: "Ver Como Funciona", 
+          label: "Explorar a Narrativa ↓", 
           variant: "secondary", 
           onClick: () => {
-            const el = document.getElementById("metodo");
+            const el = document.getElementById("bloco-2-risco-zero");
             if (el) el.scrollIntoView({ behavior: "smooth" });
           } 
         }
       ]
     },
     {
-      id: "fase-2-publicar",
-      badge: "Fase 02 — Publicar",
-      title: "Domínio Próprio & WhatsApp",
-      subtitle: "No Ar em Poucos Minutos",
-      description: "Coloque seu site na internet com seu próprio endereço oficial (.com.br), certificado de segurança SSL gratuito e botão de WhatsApp estratégico para transformar visitantes em clientes reais.",
-      align: "center",
-      icon: <Globe2 className="w-5 h-5 text-blue-400" />,
+      id: "bloco-2-risco-zero",
+      badge: "Bloco 02 • 🛡️ 100% Sem Risco • Pague Só se Aprovar",
+      title: "Peça Seu Site Feito por Nossos Especialistas",
+      subtitle: "Você Avalia o Projeto Pronto no Ar e Só Paga se Aprovar",
+      description: "Nós criamos o design, a copy persuasiva e toda a estrutura técnica da sua empresa. Você avalia o projeto funcionando no seu celular e só paga se gostar e aprovar o resultado.",
+      align: "left",
+      icon: <ShieldCheck className="w-5 h-5 text-emerald-400" />,
+      features: [
+        { 
+          title: "🛡️ 100% Sem Risco (Pague Só se Aprovar)", 
+          description: "Você não paga adiantamento. Vê o site no ar, testa cada detalhe no seu celular e só investe se aprovar o projeto." 
+        },
+        { 
+          title: "💎 Projeto Sob Medida & Mobile-First", 
+          description: "Design exclusivo e copywriting de vendas estruturados para transformar visitantes em clientes reais." 
+        },
+        { 
+          title: "⚙️ Configuração Total & Pronta", 
+          description: "Domínio oficial (.com.br), SSL seguro, indexação no Google e botão do seu WhatsApp integrado." 
+        },
+        { 
+          title: "⚡ Entrega Rápida Sem Espera", 
+          description: "Sem semanas ou meses de espera de agências convencionais. Processo ágil, direto e transparente." 
+        }
+      ],
       actions: [
         { 
-          label: "Ver Passo a Passo", 
-          variant: "primary", 
+          label: "Solicitar Meu Site Sem Pagar Nada Antes", 
+          variant: "whatsapp",
+          href: "https://wa.me/5583993595124?text=Ol%C3%A1!%20Quero%20que%20a%20equipe%20fa%C3%A7a%20o%20site%20da%20minha%20empresa%20com%20a%20condi%C3%A7%C3%A3o%20de%20s%C3%B3%20pagar%20ap%C3%B3s%20a%20aprova%C3%A7%C3%A3o%20do%20projeto."
+        },
+        { 
+          label: "Ver Presença no Google ↓", 
+          variant: "secondary", 
           onClick: () => {
-            const el = document.getElementById("pricing");
+            const el = document.getElementById("bloco-3-google");
             if (el) el.scrollIntoView({ behavior: "smooth" });
           } 
         }
       ]
     },
     {
-      id: "fase-3-ser-encontrado",
-      badge: "Fase 03 — Ser Encontrado",
-      title: "Apareça no Google",
-      subtitle: "SEO Local & Indexação",
-      description: "Conecte seu Google Meu Negócio, submeta o sitemap ao Google Search Console e seja encontrado quando clientes pesquisarem pelos seus serviços na sua região.",
+      id: "bloco-3-google",
+      badge: "Bloco 03 • Google & Presença Local",
+      title: "Sua Empresa no Topo das Buscas",
+      subtitle: "SEO Local & Google Meu Negócio",
+      description: "Quem pesquisa pelo seu serviço na sua cidade precisa encontrar a sua empresa, não a concorrência. Configuramos sua presença para atrair buscas orgânicas reais.",
       align: "left",
-      icon: <Search className="w-5 h-5 text-emerald-400" />,
+      icon: <Search className="w-5 h-5 text-cyan-400" />,
       features: [
         { 
           title: "Google Meu Negócio & Mapas", 
@@ -151,44 +175,44 @@ export function ScrollGlobe({
         },
         { 
           title: "SEO On-Page & Palavras-Chave", 
-          description: "Meta tags, títulos h1/h2 e dados estruturados otimizados para atrair clientes da sua região geográfica." 
+          description: "Meta tags, títulos h1/h2 e dados estruturados otimizados para clientes da sua região geográfica." 
         }
       ],
       actions: [
         { 
-          label: "Garantir Minha Vaga", 
-          variant: "primary", 
-          onClick: () => {
-            const el = document.getElementById("pricing");
-            if (el) el.scrollIntoView({ behavior: "smooth" });
-          } 
+          label: "Quero Aparecer no Google 📲", 
+          variant: "whatsapp",
+          href: "https://wa.me/5583993595124?text=Ol%C3%A1!%20Quero%20colocar%20a%20minha%20empresa%20no%20Google%20com%20um%20site%20profissional."
         }
       ]
     },
     {
-      id: "fase-4-renda-extra",
-      badge: "Fase 04 — Trilha Renda Extra",
-      title: "Fature Criando Sites",
-      subtitle: "TENHA UMA RENDA EXTRA",
-      description: "Muitos negócios locais ainda não possuem uma presença digital estruturada. Use o mesmo método para oferecer criação de sites na sua cidade de forma ética.",
-      align: "center",
-      icon: <TrendingUp className="w-5 h-5 text-purple-400" />,
-      actions: [
+      id: "bloco-4-conversao",
+      badge: "Bloco 04 • Mais Vendas & Conversão",
+      title: "Venda 24 Horas por Dia no Automático",
+      subtitle: "Apresentação Profissional Que Gera Resultados",
+      description: "Enquanto redes sociais dependem do algoritmo, seu site oficial é seu canal proprietário de vendas funcionando dia e noite para passar autoridade imediata.",
+      align: "left",
+      icon: <TrendingUp className="w-5 h-5 text-emerald-400" />,
+      features: [
         { 
-          label: "Começar Agora", 
-          variant: "primary", 
-          onClick: () => {
-            const el = document.getElementById("pricing");
-            if (el) el.scrollIntoView({ behavior: "smooth" });
-          } 
+          title: "Autoridade e Credibilidade Máxima", 
+          description: "Empresas com site oficial transmitem 75% mais confiança para novos clientes (Pesquisa Stanford)." 
         },
         { 
-          label: "Simulador de Ganhos", 
-          variant: "secondary", 
-          onClick: () => {
-            const el = document.getElementById("calculadora");
-            if (el) el.scrollIntoView({ behavior: "smooth" });
-          } 
+          title: "Botão WhatsApp de Alta Conversão", 
+          description: "Posicionamento estratégico para direcionar o visitante direto para o atendimento da sua equipe." 
+        },
+        { 
+          title: "Sem Mensalidades Surpresa", 
+          description: "O site pertence à sua empresa, com total transparência e sem taxas abusivas de retenção." 
+        }
+      ],
+      actions: [
+        { 
+          label: "Falar com Nossos Especialistas 📲", 
+          variant: "whatsapp",
+          href: "https://wa.me/5583993595124?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20site%20profissional%20para%20minha%20empresa."
         }
       ]
     }
@@ -445,7 +469,7 @@ export function ScrollGlobe({
                 >
                   <div className="flex items-center gap-2">
                     <div className={cn("w-1.5 h-1.5 rounded-full", isCurrent ? "bg-cyan-400 animate-pulse" : "bg-slate-500")} />
-                    <span>{section.badge || `Fase ${index + 1}`}</span>
+                    <span>{section.badge?.split("•")[0]?.trim() || `Bloco ${index + 1}`}</span>
                   </div>
                 </div>
 
@@ -462,7 +486,7 @@ export function ScrollGlobe({
                       ? "bg-cyan-400 border-cyan-400 shadow-[0_0_14px_rgba(6,182,212,0.9)] scale-125" 
                       : "bg-transparent border-slate-600 hover:border-cyan-400 hover:bg-cyan-400/20"
                   )}
-                  aria-label={`Navegar para ${section.badge || `Fase ${index + 1}`}`}
+                  aria-label={`Navegar para ${section.badge || `Bloco ${index + 1}`}`}
                 />
               </div>
             );
@@ -491,9 +515,12 @@ export function ScrollGlobe({
 
       {/* Dynamic Scrollytelling Sections */}
       {methodSections.map((section, index) => {
+        const isBlock2 = section.id === "bloco-2-risco-zero";
+
         return (
           <section
             key={section.id}
+            id={section.id}
             ref={(el) => { sectionRefs.current[index] = el; }}
             className={cn(
               "relative min-h-screen flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-24 z-20 py-24 sm:py-32",
@@ -509,8 +536,10 @@ export function ScrollGlobe({
             )}>
               {/* Badge */}
               <div className={cn(
-                "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-5",
-                "bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 backdrop-blur-md shadow-sm",
+                "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-5 backdrop-blur-md shadow-sm",
+                isBlock2
+                  ? "bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 shadow-emerald-950/40"
+                  : "bg-cyan-950/70 border border-cyan-500/30 text-cyan-300",
                 section.align === "center" && "mx-auto",
                 section.align === "right" && "ml-auto"
               )}>
@@ -540,27 +569,36 @@ export function ScrollGlobe({
               ) : (
                 <h2 className={cn(
                   "font-bold tracking-tight mb-5 leading-[1.15] text-white",
-                  "text-2xl sm:text-3xl md:text-4xl lg:text-[3rem]"
+                  "text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem]"
                 )}>
                   {section.subtitle ? (
-                  <div className="space-y-2">
+                    <div className="space-y-2">
+                      <span className={cn(
+                        "block pb-1 leading-tight",
+                        isBlock2 
+                          ? "bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent"
+                          : "bg-gradient-to-r from-white via-slate-100 to-slate-200 bg-clip-text text-transparent"
+                      )}>
+                        {section.title}
+                      </span>
+                      <span className={cn(
+                        "text-[0.55em] font-bold tracking-wider uppercase block pb-1",
+                        isBlock2 ? "text-emerald-400" : "text-cyan-400"
+                      )}>
+                        {section.subtitle}
+                      </span>
+                    </div>
+                  ) : (
                     <span className="bg-gradient-to-r from-white via-slate-100 to-slate-200 bg-clip-text text-transparent block pb-1 leading-tight">
                       {section.title}
                     </span>
-                    <span className="text-cyan-400 text-[0.55em] font-semibold tracking-wider uppercase block pb-1">
-                      {section.subtitle}
-                    </span>
-                  </div>
-                ) : (
-                  <span className="bg-gradient-to-r from-white via-slate-100 to-slate-200 bg-clip-text text-transparent block pb-1 leading-tight">
-                    {section.title}
-                  </span>
-                )}
-              </h2> )}
+                  )}
+                </h2>
+              )}
 
               {/* Description */}
               <div className={cn(
-                "text-slate-300 leading-relaxed mb-8 sm:mb-10 text-base sm:text-lg lg:text-xl font-normal max-w-2xl",
+                "text-slate-300 leading-relaxed mb-6 sm:mb-8 text-base sm:text-lg lg:text-xl font-normal max-w-2xl",
                 section.align === "center" ? "mx-auto text-center" : "",
                 section.align === "right" ? "ml-auto text-right" : ""
               )}>
@@ -573,27 +611,63 @@ export function ScrollGlobe({
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" style={{ animationDelay: "0.5s" }} />
-                      <span>Role para Explorar as 4 Fases</span>
+                      <span>Role para Explorar os Blocos Narrados</span>
                     </div>
                   </div>
                 )}
               </div>
 
+              {/* Mini-timeline exclusiva do Bloco 02 */}
+              {isBlock2 && (
+                <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-emerald-500/30 backdrop-blur-md shadow-xl">
+                  <div className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-3 flex items-center gap-2">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>O Processo Risco Zero em 3 Passos Simples:</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+                    <div className="p-3 rounded-xl bg-slate-800/60 border border-white/5">
+                      <span className="inline-block w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 font-bold text-center leading-5 mb-1.5">1</span>
+                      <strong className="text-white block mb-0.5">Envie no WhatsApp</strong>
+                      <span className="text-slate-400">Dados da empresa e serviços em 5 minutos</span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-slate-800/60 border border-white/5">
+                      <span className="inline-block w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold text-center leading-5 mb-1.5">2</span>
+                      <strong className="text-white block mb-0.5">Criamos Tudo</strong>
+                      <span className="text-slate-400">Design premium, copy e integrações</span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+                      <span className="inline-block w-5 h-5 rounded-full bg-emerald-500 text-slate-950 font-bold text-center leading-5 mb-1.5">3</span>
+                      <strong className="text-emerald-300 block mb-0.5">Aprove e Pague</strong>
+                      <span className="text-slate-300">Só investe após aprovar o projeto no ar</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Feature Cards */}
               {section.features && (
                 <div className="grid gap-3.5 sm:gap-4 mb-8 sm:mb-10 text-left">
-                  {section.features.map((feature, fIndex) => (
+                  {section.features.map((feature) => (
                     <div
                       key={feature.title}
                       className={cn(
                         "group p-4 sm:p-5 rounded-xl border transition-all duration-300",
-                        "bg-slate-900/70 backdrop-blur-md border-slate-800/80 hover:border-cyan-500/40 hover:bg-slate-900/90 hover:shadow-lg hover:shadow-cyan-950/40"
+                        "bg-slate-900/70 backdrop-blur-md border-slate-800/80",
+                        isBlock2 
+                          ? "hover:border-emerald-500/40 hover:bg-slate-900/90 hover:shadow-lg hover:shadow-emerald-950/40"
+                          : "hover:border-cyan-500/40 hover:bg-slate-900/90 hover:shadow-lg hover:shadow-cyan-950/40"
                       )}
                     >
                       <div className="flex items-start gap-3.5">
-                        <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 shrink-0 group-hover:scale-125 transition-transform" />
+                        <div className={cn(
+                          "w-2 h-2 rounded-full mt-2 shrink-0 group-hover:scale-125 transition-transform",
+                          isBlock2 ? "bg-emerald-400" : "bg-cyan-400"
+                        )} />
                         <div className="space-y-1 min-w-0">
-                          <h3 className="font-bold text-white text-base sm:text-lg group-hover:text-cyan-300 transition-colors">
+                          <h3 className={cn(
+                            "font-bold text-white text-base sm:text-lg transition-colors",
+                            isBlock2 ? "group-hover:text-emerald-300" : "group-hover:text-cyan-300"
+                          )}>
                             {feature.title}
                           </h3>
                           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
@@ -614,21 +688,53 @@ export function ScrollGlobe({
                   section.align === "right" && "justify-end",
                   (!section.align || section.align === "left") && "justify-start"
                 )}>
-                  {section.actions.map((action, actionIdx) => (
-                    <button
-                      key={action.label}
-                      onClick={action.onClick}
-                      className={cn(
-                        "inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base cursor-pointer shadow-lg",
-                        action.variant === "primary"
-                          ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 shadow-cyan-950/50 hover:shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98]"
-                          : "border border-slate-700 bg-slate-900/80 text-slate-200 hover:bg-slate-800 hover:text-white hover:border-slate-600 active:scale-[0.98]"
-                      )}
-                    >
-                      <span>{action.label}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  ))}
+                  {section.actions.map((action) => {
+                    const isWhatsApp = action.variant === "whatsapp" || action.href?.includes("wa.me");
+
+                    if (action.href) {
+                      return (
+                        <a
+                          key={action.label}
+                          href={action.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => {
+                            if (action.onClick) action.onClick();
+                            try {
+                              (window as any).dataLayer = (window as any).dataLayer || [];
+                              (window as any).dataLayer.push({ event: "whatsapp_click", location: `scroll_globe_${section.id}` });
+                            } catch {}
+                          }}
+                          className={cn(
+                            "inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold transition-all duration-300 text-sm sm:text-base cursor-pointer shadow-xl",
+                            isWhatsApp
+                              ? "bg-emerald-400 hover:bg-emerald-300 text-slate-950 shadow-emerald-500/30 hover:scale-[1.02] active:scale-[0.98]"
+                              : "bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 shadow-cyan-950/50 hover:scale-[1.02] active:scale-[0.98]"
+                          )}
+                        >
+                          {isWhatsApp && <MessageCircle className="w-5 h-5 text-slate-950 fill-slate-950" />}
+                          <span>{action.label}</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <button
+                        key={action.label}
+                        onClick={action.onClick}
+                        className={cn(
+                          "inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base cursor-pointer shadow-lg",
+                          action.variant === "primary"
+                            ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 shadow-cyan-950/50 hover:shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98]"
+                            : "border border-slate-700 bg-slate-900/80 text-slate-200 hover:bg-slate-800 hover:text-white hover:border-slate-600 active:scale-[0.98]"
+                        )}
+                      >
+                        <span>{action.label}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>
