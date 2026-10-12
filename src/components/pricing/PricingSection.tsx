@@ -130,11 +130,11 @@ export function PricingSection() {
                 className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-sm sm:text-base transition-all shadow-lg shadow-emerald-500/25 active:scale-[0.98] group cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-              <span className="whitespace-nowrap">Pedir Orçamento no WhatsApp: (83) 99359-5124</span>
+              <span className="whitespace-nowrap">Pedir Orçamento no WhatsApp</span>
               <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1.5 transition-transform" />
             </a>
             <p className="mt-3.5 text-xs text-slate-400">
-              Ou envie um e-mail para <a href="mailto:suporte@multyplique.com.br" className="text-cyan-400 hover:underline font-medium">suporte@multyplique.com.br</a>
+              WhatsApp: <strong className="text-emerald-400 font-semibold">(83) 99359-5124</strong> • E-mail: <a href="mailto:suporte@multyplique.com.br" className="text-cyan-400 hover:underline font-medium">suporte@multyplique.com.br</a>
             </p>
           </div>
         </div>
