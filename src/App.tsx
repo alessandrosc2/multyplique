@@ -96,8 +96,14 @@ export default function App() {
                 <Link to="/politica-de-reembolso" className="hover:text-cyan-400 transition-colors underline underline-offset-2">Reembolso e Garantia</Link>
               </div>
             </div>
-            <div className="flex flex-col items-center sm:items-end gap-4">
-              <img width="384" height="48" src="/pagamentos.webp" alt="Formas de Pagamento Aceitas" className="w-64 sm:w-80 md:w-96 h-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
+            <div className="flex flex-col items-center sm:items-end gap-3.5">
+              <img 
+                width="308" 
+                height="40" 
+                src="/pagamentos.webp" 
+                alt="Formas de Pagamento Aceitas" 
+                className="w-52 sm:w-64 md:w-[308px] h-auto object-contain opacity-90 hover:opacity-100 transition-opacity" 
+              />
               <div className="flex items-center gap-2 text-slate-500">
                 <ShieldCheck className="w-4 h-4 text-cyan-500/60" />
                 <span>Compra 100% Segura • Acesso Imediato</span>
