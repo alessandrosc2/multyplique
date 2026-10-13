@@ -22,24 +22,43 @@ import {
   Building2, 
   Clock, 
   CheckCircle2, 
-  AlertCircle 
+  AlertCircle,
+  MapPin,
+  Instagram,
+  Mail,
+  Phone,
+  Target,
+  Award
 } from "lucide-react";
 import { toast } from "sonner";
 import { auth, db } from "@/lib/firebase";
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { collection, query, where, getDocs, doc, updateDoc, orderBy } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, updateDoc } from "firebase/firestore";
+
+interface ServiceItem {
+  id?: string;
+  name: string;
+  description: string;
+}
 
 interface BriefingItem {
   id: string;
   businessName: string;
+  ownerName?: string;
+  documentNumber?: string;
   segment: string;
-  whatsapp: string;
   cityState?: string;
-  services: string;
+  neighborhood?: string;
+  whatsapp: string;
+  secondaryPhone?: string;
+  instagram?: string;
+  email?: string;
+  fullAddress?: string;
+  businessHours?: string;
+  services: ServiceItem[] | string;
   differentials?: string;
   colors?: string;
-  logoAndPhotos?: string;
-  socialMedia?: string;
+  socialProof?: string;
   targetAction?: string;
   observations?: string;
   txtContent: string;
@@ -111,14 +130,21 @@ export default function AdminBriefings() {
             items.push({
               id: docSnap.id,
               businessName: data.businessName || "Empresa sem nome",
+              ownerName: data.ownerName || "",
+              documentNumber: data.documentNumber || "",
               segment: data.segment || "Geral",
-              whatsapp: data.whatsapp || "",
               cityState: data.cityState || "",
-              services: data.services || "",
+              neighborhood: data.neighborhood || "",
+              whatsapp: data.whatsapp || "",
+              secondaryPhone: data.secondaryPhone || "",
+              instagram: data.instagram || "",
+              email: data.email || "",
+              fullAddress: data.fullAddress || "",
+              businessHours: data.businessHours || "",
+              services: data.services || [],
               differentials: data.differentials || "",
               colors: data.colors || "",
-              logoAndPhotos: data.logoAndPhotos || "",
-              socialMedia: data.socialMedia || "",
+              socialProof: data.socialProof || "",
               targetAction: data.targetAction || "whatsapp",
               observations: data.observations || "",
               txtContent: data.txtContent || "",
@@ -131,7 +157,7 @@ export default function AdminBriefings() {
         }
       }
 
-      // 2. Inclui cópias de contingência do localStorage (caso haja algum enviado offline)
+      // 2. Inclui cópias de contingência do localStorage
       try {
         const local = JSON.parse(localStorage.getItem("multy_local_briefings") || "[]");
         local.forEach((locItem: any) => {
@@ -139,14 +165,21 @@ export default function AdminBriefings() {
             items.push({
               id: locItem.id,
               businessName: locItem.businessName || "Empresa sem nome",
+              ownerName: locItem.ownerName || "",
+              documentNumber: locItem.documentNumber || "",
               segment: locItem.segment || "Geral",
-              whatsapp: locItem.whatsapp || "",
               cityState: locItem.cityState || "",
-              services: locItem.services || "",
+              neighborhood: locItem.neighborhood || "",
+              whatsapp: locItem.whatsapp || "",
+              secondaryPhone: locItem.secondaryPhone || "",
+              instagram: locItem.instagram || "",
+              email: locItem.email || "",
+              fullAddress: locItem.fullAddress || "",
+              businessHours: locItem.businessHours || "",
+              services: locItem.services || [],
               differentials: locItem.differentials || "",
               colors: locItem.colors || "",
-              logoAndPhotos: locItem.logoAndPhotos || "",
-              socialMedia: locItem.socialMedia || "",
+              socialProof: locItem.socialProof || "",
               targetAction: locItem.targetAction || "whatsapp",
               observations: locItem.observations || "",
               txtContent: locItem.txtContent || "",
@@ -176,19 +209,16 @@ export default function AdminBriefings() {
   const handleToggleArchive = async (briefing: BriefingItem) => {
     const newStatus = briefing.status === "ativo" ? "arquivado" : "ativo";
     try {
-      // 1. Atualiza no Firestore se for doc do Firestore
       if (db && !briefing.id.startsWith("local_")) {
         await updateDoc(doc(db, "leads", briefing.id), { status: newStatus });
       }
 
-      // 2. Atualiza no localStorage
       try {
         const local = JSON.parse(localStorage.getItem("multy_local_briefings") || "[]");
         const updated = local.map((item: any) => item.id === briefing.id ? { ...item, status: newStatus } : item);
         localStorage.setItem("multy_local_briefings", JSON.stringify(updated));
       } catch {}
 
-      // Atualiza estado local
       setBriefings(prev => prev.map(item => item.id === briefing.id ? { ...item, status: newStatus } : item));
       
       if (newStatus === "arquivado") {
@@ -226,36 +256,56 @@ export default function AdminBriefings() {
   };
 
   const handleCopyPrompt = (briefing: BriefingItem) => {
-    const aiPrompt = `Atue como um Especialista Sênior em UI/UX e Copywriting de Alta Conversão.
-Crie um site profissional, elegante e focado em vendas com as seguintes informações do briefing:
+    const servicesText = Array.isArray(briefing.services)
+      ? briefing.services.map((s, i) => `${i + 1}. ${s.name}: ${s.description}`).join("\n")
+      : String(briefing.services || "");
 
-NOME DA EMPRESA: ${briefing.businessName}
-NICHO/SEGMENTO: ${briefing.segment}
-CIDADE/ESTADO: ${briefing.cityState || "Atendimento Brasil"}
-WHATSAPP: ${briefing.whatsapp}
+    const aiPrompt = `Atue como Especialista Sênior em UI/UX e Copywriting de Alta Conversão.
+Crie o código completo de um site moderno, elegante e focado em vendas com base nas seguintes especificações de cliente:
 
-SERVIÇOS PRINCIPAIS:
-${briefing.services}
+==================== BRIEFING DO CLIENTE ====================
+EMPRESA: ${briefing.businessName}
+${briefing.ownerName ? `RESPONSÁVEL / PROFISSIONAL: ${briefing.ownerName}` : ""}
+${briefing.documentNumber ? `CNPJ / REGISTRO: ${briefing.documentNumber}` : ""}
+SEGMENTO / NICHO: ${briefing.segment}
+LOCALIZAÇÃO: ${briefing.cityState || "Brasil"}${briefing.neighborhood ? ` (Região: ${briefing.neighborhood})` : ""}
+${briefing.fullAddress ? `ENDEREÇO COMPLETO (INTEGRAR GOOGLE MAPS): ${briefing.fullAddress}` : "ATENDIMENTO ONLINE / A DOMICÍLIO (Sem ponto fixo no mapa)"}
+${briefing.businessHours ? `HORÁRIO DE FUNCIONAMENTO: ${briefing.businessHours}` : ""}
+
+CANAIS DE CONTATO:
+- WhatsApp Principal: ${briefing.whatsapp}
+${briefing.secondaryPhone ? `- Telefone Secundário: ${briefing.secondaryPhone}` : ""}
+${briefing.instagram ? `- Instagram Oficial: ${briefing.instagram}` : ""}
+${briefing.email ? `- E-mail: ${briefing.email}` : ""}
+
+SERVIÇOS / PRODUTOS PRINCIPAIS:
+${servicesText}
 
 DIFERENCIAIS COMPETITIVOS:
-${briefing.differentials || "Atendimento de excelência, agilidade e confiança"}
+${briefing.differentials || "Atendimento de excelência, pontualidade, agilidade e confiança comprovada."}
 
-ESTILO VISUAL & CORES:
-${briefing.colors || "Dark theme sofisticado com detalhes em ciano e branco"}
+${briefing.socialProof ? `PROVA SOCIAL / DEPOIMENTOS: ${briefing.socialProof}` : ""}
 
-LOGOTIPO/IMAGENS:
-${briefing.logoAndPhotos || "Utilizar placeholders modernos com fotos reais do nicho via Unsplash"}
+DIRETRIZES DE DESIGN & ESTILO:
+- Paleta / Cores: ${briefing.colors || "Dark theme sofisticado com azul ciano, tipografia nítida sem bold excessivo"}
+- Chamada Principal (CTA): ${briefing.targetAction === "whatsapp" ? "Botão para WhatsApp direto" : "Formulário / Orçamento"}
+- Imagens / Logo: Utilizar placeholders profissionais de alta qualidade e imagens contextuais do nicho.
 
-OBJETIVO DA PÁGINA:
-${briefing.targetAction === "whatsapp" ? "Levar o visitante diretamente para conversar e fechar no WhatsApp" : "Geração de orçamentos e agendamentos"}
+${briefing.observations ? `OBSERVAÇÕES ADICIONAIS:\n${briefing.observations}` : ""}
+=============================================================
 
-OBSERVAÇÕES:
-${briefing.observations || "Focar em autoridade, títulos fortes sem exagero e navegação ultra rápida para celular."}
-
-Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de serviços, prova social, comparativo de autoridade e botão direto de WhatsApp.`;
+ESTRUTURA OBRIGATÓRIA DA PÁGINA:
+1. Header fixo com logotipo, links de navegação e botão de WhatsApp com DDD.
+2. Hero Section com headline magnética focada na dor do cliente e chamada para ação imediata.
+3. Seção de Autoridade & Sobre a Empresa (destacando história e credibilidade).
+4. Grid dos Serviços Principais (cards interativos com ícones e benefícios claros).
+5. Seção de Diferenciais (por que escolher nossa empresa).
+6. Prova Social / Depoimentos reais de clientes e estatísticas do segmento.
+7. Bloco de Localização com Google Maps incorporado e horários de atendimento.
+8. Rodapé completo com CNPJ/Registro profissional, links de contato e copyright.`;
 
     navigator.clipboard.writeText(aiPrompt);
-    toast.success("🤖 Prompt mestre de IA copiado! Cole no Claude ou ChatGPT para gerar o site.");
+    toast.success("🤖 Prompt mestre de IA copiado! Cole no Claude, ChatGPT ou v0 para gerar o site.");
   };
 
   // Filtragem
@@ -264,7 +314,8 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
     const matchesSearch = 
       item.businessName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.segment.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.whatsapp.includes(searchQuery);
+      item.whatsapp.includes(searchQuery) ||
+      (item.cityState && item.cityState.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesTab && matchesSearch;
   });
 
@@ -279,7 +330,7 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
     );
   }
 
-  // Tela de Login caso não esteja autenticado
+  // Tela de Login
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-[#070d1e] text-slate-100 flex flex-col justify-center items-center px-4 py-12">
@@ -351,7 +402,7 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
     );
   }
 
-  // Dashboard de Gestão de Briefings
+  // Dashboard de Gestão
   return (
     <div className="min-h-screen bg-[#070d1e] text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-slate-950">
       {/* Top Navbar */}
@@ -374,7 +425,7 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
               className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-950/80 border border-cyan-400/40 text-cyan-300 text-xs font-semibold hover:bg-cyan-900/60 transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" />
-              <span>Ver Formulário Público</span>
+              <span>Ver Formulário de Clientes</span>
             </Link>
 
             <button
@@ -466,7 +517,7 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Buscar empresa, nicho..."
+                placeholder="Buscar empresa, nicho, cidade..."
                 className="w-full h-10 pl-9 pr-4 rounded-xl bg-slate-950/80 border border-white/15 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400"
               />
             </div>
@@ -520,6 +571,8 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
                 ? new Date(briefing.createdAt).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" }) 
                 : "Recente";
 
+              const serviceCount = Array.isArray(briefing.services) ? briefing.services.length : 1;
+
               return (
                 <div
                   key={briefing.id}
@@ -528,10 +581,10 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
                   <div>
                     {/* Top Status & Date */}
                     <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="text-[11px] font-mono text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded-md border border-cyan-500/30">
+                      <span className="text-[11px] font-mono text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded-md border border-cyan-500/30 truncate max-w-[65%]">
                         {briefing.segment}
                       </span>
-                      <span className="text-[11px] text-slate-500 flex items-center gap-1">
+                      <span className="text-[11px] text-slate-500 flex items-center gap-1 shrink-0">
                         <Clock className="w-3 h-3" />
                         {formattedDate}
                       </span>
@@ -542,22 +595,35 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
                       {briefing.businessName}
                     </h3>
 
+                    {briefing.ownerName && (
+                      <p className="text-xs text-slate-300 font-medium mb-1 truncate">
+                        Profissional: {briefing.ownerName}
+                      </p>
+                    )}
+
                     {briefing.cityState && (
                       <p className="text-xs text-slate-400 flex items-center gap-1 mb-3">
                         <MapPin className="w-3 h-3 text-cyan-400 shrink-0" />
-                        <span className="truncate">{briefing.cityState}</span>
+                        <span className="truncate">{briefing.cityState}{briefing.neighborhood ? ` (${briefing.neighborhood})` : ""}</span>
                       </p>
                     )}
 
                     {/* Services Snippet */}
-                    <div className="p-3 rounded-xl bg-slate-950/70 border border-white/5 mb-4 text-xs text-slate-300 line-clamp-3">
-                      <strong className="text-white block mb-0.5">Serviços:</strong>
-                      {briefing.services}
+                    <div className="p-3 rounded-xl bg-slate-950/70 border border-white/5 mb-3 text-xs text-slate-300">
+                      <div className="flex items-center justify-between mb-1">
+                        <strong className="text-white text-[11px]">Serviços Registrados:</strong>
+                        <span className="text-[10px] text-cyan-400 font-mono">({serviceCount})</span>
+                      </div>
+                      <div className="line-clamp-2">
+                        {Array.isArray(briefing.services) 
+                          ? briefing.services.map(s => s.name).filter(Boolean).join(" • ")
+                          : String(briefing.services)}
+                      </div>
                     </div>
 
                     {/* WhatsApp Quick Link */}
                     {briefing.whatsapp && (
-                      <div className="flex items-center gap-2 text-xs mb-4">
+                      <div className="flex items-center justify-between text-xs mb-4">
                         <a
                           href={`https://wa.me/55${briefing.whatsapp.replace(/\D/g, '')}`}
                           target="_blank"
@@ -567,6 +633,12 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
                           <MessageCircle className="w-3.5 h-3.5 fill-emerald-400/20" />
                           <span>{briefing.whatsapp}</span>
                         </a>
+
+                        {briefing.instagram && (
+                          <span className="text-slate-400 text-[11px] truncate max-w-[40%]">
+                            {briefing.instagram}
+                          </span>
+                        )}
                       </div>
                     )}
                   </div>
@@ -648,7 +720,7 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
             <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
               <div>
                 <span className="text-xs font-semibold text-cyan-400 uppercase tracking-widest block mb-0.5">
-                  Detalhes do Briefing
+                  Ficha Completa do Negócio
                 </span>
                 <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                   {selectedBriefing.businessName}
@@ -664,13 +736,37 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
 
             {/* Conteúdo Completo Formatado */}
             <div className="space-y-4 text-xs sm:text-sm text-slate-300">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-slate-950/70 border border-white/10">
+              
+              {/* Bloco 1: Identificação */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 p-4 rounded-2xl bg-slate-950/70 border border-white/10">
                 <div>
-                  <span className="text-slate-400 block text-xs">Segmento:</span>
-                  <span className="font-semibold text-white">{selectedBriefing.segment}</span>
+                  <span className="text-slate-400 block text-xs">Segmento / Ramo:</span>
+                  <span className="font-semibold text-cyan-300">{selectedBriefing.segment}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-xs">WhatsApp:</span>
+                  <span className="text-slate-400 block text-xs">Responsável / Profissional:</span>
+                  <span className="font-semibold text-white">{selectedBriefing.ownerName || "Não informado"}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400 block text-xs">CNPJ / Registro (OAB/CRM/etc):</span>
+                  <span className="font-semibold text-white">{selectedBriefing.documentNumber || "Não informado"}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400 block text-xs">Cidade / Estado:</span>
+                  <span className="font-semibold text-white">{selectedBriefing.cityState || "Não informado"}</span>
+                </div>
+                {selectedBriefing.neighborhood && (
+                  <div className="sm:col-span-2">
+                    <span className="text-slate-400 block text-xs">Bairro / Região:</span>
+                    <span className="font-semibold text-white">{selectedBriefing.neighborhood}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Bloco 2: Contatos & Localização */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 p-4 rounded-2xl bg-slate-950/70 border border-white/10">
+                <div>
+                  <span className="text-slate-400 block text-xs">WhatsApp Comercial:</span>
                   <a 
                     href={`https://wa.me/55${selectedBriefing.whatsapp.replace(/\D/g, '')}`} 
                     target="_blank" 
@@ -681,47 +777,84 @@ Gere a estrutura completa com Hero Section de alto impacto, Bento Grid de servi�
                   </a>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-xs">Cidade/Estado:</span>
-                  <span className="font-semibold text-white">{selectedBriefing.cityState || "Não informado"}</span>
+                  <span className="text-slate-400 block text-xs">Instagram:</span>
+                  <span className="font-semibold text-white">{selectedBriefing.instagram || "Não informado"}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-xs">Cores / Estilo:</span>
-                  <span className="font-semibold text-white">{selectedBriefing.colors || "A critério"}</span>
+                  <span className="text-slate-400 block text-xs">E-mail Comercial:</span>
+                  <span className="font-semibold text-white">{selectedBriefing.email || "Não informado"}</span>
                 </div>
+                <div>
+                  <span className="text-slate-400 block text-xs">Telefone Secundário:</span>
+                  <span className="font-semibold text-white">{selectedBriefing.secondaryPhone || "Não informado"}</span>
+                </div>
+                {selectedBriefing.fullAddress && (
+                  <div className="sm:col-span-2 pt-2 border-t border-white/5">
+                    <span className="text-slate-400 block text-xs font-semibold text-cyan-300">Endereço Completo (Google Maps):</span>
+                    <p className="text-slate-200 mt-0.5">{selectedBriefing.fullAddress}</p>
+                  </div>
+                )}
+                {selectedBriefing.businessHours && (
+                  <div className="sm:col-span-2 pt-2 border-t border-white/5">
+                    <span className="text-slate-400 block text-xs font-semibold text-cyan-300">Horário de Funcionamento:</span>
+                    <p className="text-slate-200 mt-0.5">{selectedBriefing.businessHours}</p>
+                  </div>
+                )}
               </div>
 
+              {/* Bloco 3: Serviços Principais */}
               <div className="p-4 rounded-2xl bg-slate-950/70 border border-white/10">
-                <span className="text-slate-400 block text-xs mb-1 font-semibold text-cyan-300">Serviços Oferecidos:</span>
-                <p className="whitespace-pre-wrap text-slate-200 leading-relaxed">{selectedBriefing.services}</p>
+                <span className="text-cyan-300 block text-xs mb-2 font-bold uppercase tracking-wider">
+                  Serviços / Especialidades Principais:
+                </span>
+                {Array.isArray(selectedBriefing.services) ? (
+                  <div className="space-y-2.5">
+                    {selectedBriefing.services.map((serv, sIdx) => (
+                      <div key={sIdx} className="p-2.5 rounded-xl bg-slate-900 border border-white/5">
+                        <strong className="text-white block">{sIdx + 1}. {serv.name}</strong>
+                        {serv.description && (
+                          <span className="text-xs text-slate-300 block mt-0.5">{serv.description}</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="whitespace-pre-wrap text-slate-200 leading-relaxed">{String(selectedBriefing.services)}</p>
+                )}
               </div>
 
+              {/* Bloco 4: Diferenciais */}
               {selectedBriefing.differentials && (
                 <div className="p-4 rounded-2xl bg-slate-950/70 border border-white/10">
-                  <span className="text-slate-400 block text-xs mb-1 font-semibold text-cyan-300">Diferenciais Competitivos:</span>
+                  <span className="text-cyan-300 block text-xs mb-1 font-bold uppercase tracking-wider">Diferenciais Competitivos:</span>
                   <p className="whitespace-pre-wrap text-slate-200 leading-relaxed">{selectedBriefing.differentials}</p>
                 </div>
               )}
 
-              {selectedBriefing.logoAndPhotos && (
-                <div className="p-4 rounded-2xl bg-slate-950/70 border border-white/10">
-                  <span className="text-slate-400 block text-xs mb-1 font-semibold text-cyan-300">Logotipo / Fotos:</span>
-                  <p className="text-slate-200">{selectedBriefing.logoAndPhotos}</p>
+              {/* Bloco 5: Cores, Prova Social & Observações */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 p-4 rounded-2xl bg-slate-950/70 border border-white/10">
+                <div>
+                  <span className="text-slate-400 block text-xs">Cores / Estilo Visual:</span>
+                  <span className="font-semibold text-white">{selectedBriefing.colors || "A critério"}</span>
                 </div>
-              )}
+                <div>
+                  <span className="text-slate-400 block text-xs">Ação Principal:</span>
+                  <span className="font-semibold text-cyan-300">{selectedBriefing.targetAction || "WhatsApp"}</span>
+                </div>
+                {selectedBriefing.socialProof && (
+                  <div className="sm:col-span-2">
+                    <span className="text-slate-400 block text-xs font-semibold text-cyan-300">Prova Social / Conquistas:</span>
+                    <p className="text-slate-200 mt-0.5">{selectedBriefing.socialProof}</p>
+                  </div>
+                )}
+                {selectedBriefing.observations && (
+                  <div className="sm:col-span-2 pt-2 border-t border-white/5">
+                    <span className="text-slate-400 block text-xs font-semibold text-cyan-300">Observações Adicionais:</span>
+                    <p className="whitespace-pre-wrap text-slate-200 leading-relaxed mt-0.5">{selectedBriefing.observations}</p>
+                  </div>
+                )}
+              </div>
 
-              {selectedBriefing.socialMedia && (
-                <div className="p-4 rounded-2xl bg-slate-950/70 border border-white/10">
-                  <span className="text-slate-400 block text-xs mb-1 font-semibold text-cyan-300">Redes Sociais:</span>
-                  <p className="text-slate-200">{selectedBriefing.socialMedia}</p>
-                </div>
-              )}
-
-              {selectedBriefing.observations && (
-                <div className="p-4 rounded-2xl bg-slate-950/70 border border-white/10">
-                  <span className="text-slate-400 block text-xs mb-1 font-semibold text-cyan-300">Observações Extras:</span>
-                  <p className="whitespace-pre-wrap text-slate-200 leading-relaxed">{selectedBriefing.observations}</p>
-                </div>
-              )}
             </div>
 
             {/* Modal Actions */}
