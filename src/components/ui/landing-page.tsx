@@ -97,7 +97,7 @@ export function ScrollGlobe({
       ],
       actions: [
         { 
-          label: "Quero Meu Site Profissional", 
+          label: "Solicitar Meu Site", 
           variant: "primary", 
           onClick: () => {
             const el = document.getElementById("bloco-2-risco-zero");
@@ -105,7 +105,7 @@ export function ScrollGlobe({
           } 
         },
         { 
-          label: "Explorar a Narrativa ↓", 
+          label: "Conhecer o Método ↓", 
           variant: "secondary", 
           onClick: () => {
             const el = document.getElementById("bloco-2-risco-zero");
@@ -142,7 +142,7 @@ export function ScrollGlobe({
       ],
       actions: [
         { 
-          label: "Solicitar Meu Site Sem Pagar Nada Antes", 
+          label: "Solicitar Meu Site", 
           variant: "whatsapp",
           href: "https://wa.me/5583993595124?text=Ol%C3%A1!%20Quero%20que%20a%20equipe%20fa%C3%A7a%20o%20site%20da%20minha%20empresa%20com%20a%20condi%C3%A7%C3%A3o%20de%20s%C3%B3%20pagar%20ap%C3%B3s%20a%20aprova%C3%A7%C3%A3o%20do%20projeto."
         },
@@ -180,7 +180,7 @@ export function ScrollGlobe({
       ],
       actions: [
         { 
-          label: "Quero Aparecer no Google 📲", 
+          label: "Aparecer no Google", 
           variant: "whatsapp",
           href: "https://wa.me/5583993595124?text=Ol%C3%A1!%20Quero%20colocar%20a%20minha%20empresa%20no%20Google%20com%20um%20site%20profissional."
         }
@@ -193,7 +193,7 @@ export function ScrollGlobe({
       subtitle: "Apresentação Profissional Que Gera Resultados",
       description: "Enquanto redes sociais dependem do algoritmo, seu site oficial é seu canal proprietário de vendas funcionando dia e noite para passar autoridade imediata.",
       align: "left",
-      icon: <TrendingUp className="w-5 h-5 text-emerald-400" />,
+      icon: <TrendingUp className="w-5 h-5 text-cyan-400" />,
       features: [
         { 
           title: "Autoridade e Credibilidade Máxima", 
@@ -210,7 +210,7 @@ export function ScrollGlobe({
       ],
       actions: [
         { 
-          label: "Falar com Nossos Especialistas 📲", 
+          label: "Solicitar Meu Site", 
           variant: "whatsapp",
           href: "https://wa.me/5583993595124?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20site%20profissional%20para%20minha%20empresa."
         }
@@ -683,15 +683,15 @@ export function ScrollGlobe({
                             } catch {}
                           }}
                           className={cn(
-                            "inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold transition-all duration-300 text-sm sm:text-base cursor-pointer shadow-xl",
+                            "inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl font-bold transition-all duration-300 text-sm sm:text-base cursor-pointer shadow-lg whitespace-nowrap",
                             isWhatsApp
-                              ? "bg-gradient-to-r from-blue-600 via-cyan-400 to-cyan-300 hover:brightness-110 text-slate-950 font-extrabold shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98]"
+                              ? "bg-gradient-to-r from-blue-600 via-cyan-400 to-cyan-300 hover:brightness-110 text-slate-950 shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98]"
                               : "bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 shadow-cyan-950/50 hover:scale-[1.02] active:scale-[0.98]"
                           )}
                         >
-                          {isWhatsApp && <MessageCircle className="w-5 h-5 text-slate-950 fill-slate-950" />}
+                          {isWhatsApp && <MessageCircle className="w-4 h-4 text-slate-950 fill-slate-950 shrink-0" />}
                           <span>{action.label}</span>
-                          <ArrowRight className="w-4 h-4" />
+                          <ArrowRight className="w-4 h-4 shrink-0" />
                         </a>
                       );
                     }
@@ -701,14 +701,14 @@ export function ScrollGlobe({
                         key={action.label}
                         onClick={action.onClick}
                         className={cn(
-                          "inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base cursor-pointer shadow-lg",
+                          "inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base cursor-pointer shadow-md whitespace-nowrap",
                           action.variant === "primary"
                             ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 shadow-cyan-950/50 hover:shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98]"
                             : "border border-slate-700 bg-slate-900/80 text-slate-200 hover:bg-slate-800 hover:text-white hover:border-slate-600 active:scale-[0.98]"
                         )}
                       >
                         <span>{action.label}</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="w-4 h-4 shrink-0" />
                       </button>
                     );
                   })}

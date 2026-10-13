@@ -106,9 +106,9 @@ export function ResultadosSection() {
             href="https://wa.me/5583993595124?text=Ol%C3%A1!%20Vi%20os%20exemplos%20de%20sites%20e%20quero%20um%20neste%20mesmo%20padr%C3%A3o%20por%20R$%20149,00%20(pagamento%20s%C3%B3%20ap%C3%B3s%20aprovar)."
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-400 to-cyan-300 hover:brightness-110 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-2"
+            className="shrink-0 h-12 px-6 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-400 to-cyan-300 hover:brightness-110 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/25 transition-all inline-flex items-center gap-2 whitespace-nowrap active:scale-[0.98]"
           >
-            <span>Pedir Meu Site Por R$ 149,00</span>
+            <span>Solicitar Meu Site</span>
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>

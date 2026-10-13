@@ -77,71 +77,71 @@ export function PricingSection() {
             </div>
 
             {/* Title & Description */}
-            <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
               Peça Seu Site Feito por Especialistas
             </h3>
-            <p className="text-slate-300 text-xs sm:text-sm mt-1.5 leading-relaxed">
+            <p className="text-slate-300 text-xs sm:text-sm mt-1 leading-relaxed font-normal">
               Criamos o design, a copy e a estrutura completa. Você avalia no ar e só paga se aprovar.
             </p>
             
             {/* Price Box */}
             <div className="my-5 p-4 rounded-2xl bg-cyan-950/30 border border-cyan-400/30">
-              <span className="text-[11px] font-semibold text-cyan-300 uppercase tracking-wider block">
+              <span className="text-[11px] font-medium text-cyan-300 uppercase tracking-wider block">
                 Investimento Único Promocional
               </span>
-              <div className="text-3xl sm:text-4xl font-black text-white tracking-tight mt-1 flex items-baseline gap-1">
+              <div className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-1 flex items-baseline gap-1">
                 <span className="text-xl text-cyan-400 font-bold">R$</span>
                 <span>149</span>
                 <span className="text-xl text-cyan-400 font-bold">,00</span>
               </div>
-              <span className="text-[11px] text-slate-400 block mt-1">
+              <span className="text-[11px] text-slate-400 block mt-1 font-normal">
                 pagamento único • sem mensalidade recorrente • pague após aprovação
               </span>
             </div>
 
-            {/* Benefits Checkmarks */}
-            <div className="space-y-2.5 text-xs sm:text-sm text-slate-200 border-t border-white/10 pt-4 mb-6">
-              <div className="flex items-start gap-2.5">
-                <Check className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span><strong>Risco Zero Absoluto:</strong> você vê o site funcionando antes de gastar 1 centavo.</span>
+            {/* Benefits Checkmarks with harmonious typography */}
+            <div className="space-y-2.5 text-xs sm:text-sm text-slate-300 border-t border-white/10 pt-4 mb-6 font-normal">
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Risco Zero: você vê o site no ar antes de gastar 1 centavo</span>
               </div>
-              <div className="flex items-start gap-2.5">
-                <Check className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span><strong>Pronto em menos de 24 horas:</strong> sem semanas de espera de agências convencionais.</span>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Entrega rápida em menos de 24 horas</span>
               </div>
-              <div className="flex items-start gap-2.5">
-                <Check className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span><strong>Projeto sob medida:</strong> copywriting de vendas e 100% otimizado para celulares.</span>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Projeto sob medida e otimizado para celulares</span>
               </div>
-              <div className="flex items-start gap-2.5">
-                <Check className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span><strong>Configuração completa:</strong> domínio oficial (.com.br) e WhatsApp integrado.</span>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Configuração completa com domínio e WhatsApp</span>
               </div>
-              <div className="flex items-start gap-2.5">
-                <Check className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span><strong>Zero risco de golpe:</strong> só pague se gostar e aprovar o resultado.</span>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Sem mensalidades: pagamento único após aprovação</span>
               </div>
             </div>
 
-            {/* CTA Button matching Image 1 layout & palette */}
+            {/* CTA Button - Compact, Single-line, No wrapping */}
             <a
-              href="https://wa.me/5583993595124?text=Ol%C3%A1!%20Quero%20que%20a%20equipe%20fa%C3%A7a%20o%20site%20da%20minha%20empresa%20por%20R$%20149,00%20(pagamento%20s%C3%B3%20ap%C3%B3s%20aprovar%20o%20resultado)."
+              href="https://wa.me/5583993595124?text=Ol%C3%A1!%20Quero%20solicitar%20meu%20site%20por%20R$%20149,00%20(pagamento%20s%C3%B3%20ap%C3%B3s%20aprovar%20o%20resultado)."
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
                 try {
                   (window as any).dataLayer = (window as any).dataLayer || [];
-                  (window as any).dataLayer.push({ event: 'whatsapp_click', location: 'pricing_149_risco_zero' });
+                  (window as any).dataLayer.push({ event: 'whatsapp_click', location: 'pricing_149_solicitar' });
                 } catch {}
               }}
-              className="w-full py-3.5 px-5 rounded-xl font-extrabold text-sm sm:text-base bg-gradient-to-r from-blue-600 via-cyan-400 to-cyan-300 hover:brightness-110 text-slate-950 shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 cursor-pointer inline-flex items-center justify-center gap-2 active:scale-[0.98] group"
+              className="w-full h-12 px-5 rounded-xl font-bold text-sm sm:text-base bg-gradient-to-r from-blue-600 via-cyan-400 to-cyan-300 hover:brightness-110 text-slate-950 shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 cursor-pointer inline-flex items-center justify-center gap-2 active:scale-[0.98] whitespace-nowrap group"
             >
               <MessageCircle className="w-4 h-4 text-slate-950 fill-slate-950 shrink-0" />
-              <span>Solicitar Meu Site Sem Pagar Nada Antes</span>
+              <span>Solicitar Meu Site</span>
               <ArrowRight className="w-4 h-4 text-slate-950 shrink-0 group-hover:translate-x-1 transition-transform" />
             </a>
 
-            <div className="mt-3.5 flex items-center justify-center gap-1.5 text-[11px] text-slate-400 text-center">
+            <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-slate-400 text-center font-normal">
               <ShieldCheck className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
               <span>Você só paga após aprovação • WhatsApp: (83) 99359-5124</span>
             </div>
@@ -176,7 +176,7 @@ export function PricingSection() {
                     aria-expanded={isOpen} 
                     aria-controls={`faq-content-${index}`} 
                     id={`faq-header-${index}`} 
-                    className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-white hover:text-cyan-300 transition-colors cursor-pointer"
+                    className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-semibold text-sm sm:text-base text-white hover:text-cyan-300 transition-colors cursor-pointer"
                   >
                     <span className="leading-snug">{faq.q}</span>
                     <ChevronDown className={cn("w-4 h-4 text-cyan-400 transition-transform duration-300 shrink-0", isOpen && "rotate-180 text-cyan-300")} />
