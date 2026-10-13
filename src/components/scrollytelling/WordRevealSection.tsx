@@ -53,13 +53,12 @@ export function WordRevealSection() {
   return (
     <section ref={containerRef} className="relative bg-[#070d1e] text-white py-24 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden border-t border-b border-white/10">
       <div className="max-w-5xl mx-auto text-center mb-16 sm:mb-20">
-        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 text-cyan-300 border border-blue-500/20 mb-8 uppercase tracking-widest">
-          <Zap className="w-3.5 h-3.5 text-cyan-400" />
+        <span className="text-xs sm:text-sm font-semibold text-cyan-400 uppercase tracking-widest block mb-6">
           O Dilema da Presença Digital
         </span>
 
         {/* Scroll-scrubbed kinetic text */}
-        <h2 ref={headlineRef} className="text-3xl sm:text-5xl lg:text-5xl font-semibold tracking-[-0.03em] leading-[1.3] max-w-4xl mx-auto mb-6 text-slate-100">
+        <h2 ref={headlineRef} className="text-2xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.35] max-w-4xl mx-auto mb-6 text-slate-100">
           {words.map((word, i) => {
             return (
               <span

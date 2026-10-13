@@ -48,14 +48,13 @@ export function PricingSection() {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 mb-3 uppercase tracking-widest">
-            <ShieldCheck className="w-4 h-4 text-cyan-400" />
+          <span className="text-xs sm:text-sm font-semibold text-cyan-400 uppercase tracking-widest block mb-3">
             Condição Especial • Risco Zero Absoluto
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white">
             Garanta sua Presença Digital
           </h2>
-          <p className="mt-2 text-slate-300 text-sm sm:text-base">
+          <p className="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
             Seu site profissional no ar em menos de 24 horas por valor único. Você só paga após aprovar.
           </p>
         </div>
@@ -66,7 +65,7 @@ export function PricingSection() {
             
             {/* Top Tag */}
             <div className="flex items-center justify-between gap-2 mb-4">
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase text-cyan-300 tracking-wide px-3 py-1 rounded-full bg-cyan-950/90 border border-cyan-400/40">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase text-cyan-300 tracking-wide px-3 py-1 rounded-full bg-cyan-950/90 border border-cyan-400/40">
                 <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
                 Pague Só se Aprovar
               </span>
@@ -89,10 +88,10 @@ export function PricingSection() {
               <span className="text-[11px] font-medium text-cyan-300 uppercase tracking-wider block">
                 Investimento Único Promocional
               </span>
-              <div className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-1 flex items-baseline gap-1">
-                <span className="text-xl text-cyan-400 font-bold">R$</span>
+              <div className="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-1 flex items-baseline gap-1">
+                <span className="text-xl text-cyan-400 font-semibold">R$</span>
                 <span>149</span>
-                <span className="text-xl text-cyan-400 font-bold">,00</span>
+                <span className="text-xl text-cyan-400 font-semibold">,00</span>
               </div>
               <span className="text-[11px] text-slate-400 block mt-1 font-normal">
                 pagamento único • sem mensalidade recorrente • pague após aprovação

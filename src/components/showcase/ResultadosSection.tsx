@@ -35,16 +35,15 @@ export function ResultadosSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
+          <span className="text-xs sm:text-sm font-semibold text-cyan-400 uppercase tracking-widest block mb-3">
             Portfólio & Resultados Reais
-          </div>
+          </span>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Com o processo certo, é <span className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">este nível</span> que sai daqui.
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
+            Com o processo certo, é este nível que sai daqui.
           </h2>
 
-          <p className="mt-4 text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+          <p className="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
             Cada página abaixo nasce do mesmo caminho: oferta definida, prompt na ordem correta, revisão de conversão e publicação. Nichos diferentes, mesma estrutura.
           </p>
         </div>

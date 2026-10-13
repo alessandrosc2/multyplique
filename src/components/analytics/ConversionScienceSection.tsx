@@ -44,17 +44,16 @@ export function ConversionScienceSection() {
         
         {/* 1. Header da Seção */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-cyan-950/90 text-cyan-300 border border-cyan-500/40 mb-6 tracking-wider uppercase shadow-sm">
-            <ShieldAlert className="w-4 h-4 text-cyan-400" />
+          <span className="text-xs sm:text-sm font-semibold text-cyan-400 uppercase tracking-widest block mb-3">
             Diagnóstico de Mercado & Conversão
-          </div>
+          </span>
 
-          <h2 id="analytics-heading" className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-6 leading-[1.2]">
+          <h2 id="analytics-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white mb-4 leading-tight">
             Você não está apenas perdendo cliques. <br className="hidden sm:inline" />
             Está entregando <span className="text-cyan-400 font-bold">+39% mais receita</span> para a concorrência.
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl mx-auto font-normal">
+          <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal">
             O custo invisível de não ter um site estruturado é medido em orçamentos perdidos, descarte instantâneo e desconfiança do cliente. Veja o que os maiores estudos globais de comportamento revelam:
           </p>
         </div>
@@ -93,7 +92,7 @@ export function ConversionScienceSection() {
 
               {/* Indicador Numérico com Medidor */}
               <div className="flex items-baseline gap-3 mb-4">
-                <span className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white">56%</span>
+                <span className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white">56%</span>
                 <span className="text-rose-400 font-bold text-sm sm:text-base uppercase tracking-wider">dos consumidores</span>
               </div>
               <p className="text-slate-200 text-base sm:text-lg leading-relaxed mb-6 font-normal">
@@ -114,7 +113,7 @@ export function ConversionScienceSection() {
 
             {/* Sub-alerta de Descarte Imediato */}
             <div className="p-5 rounded-2xl bg-rose-950/50 border border-rose-500/30 text-slate-200 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-rose-500/20 flex items-center justify-center shrink-0 text-rose-300 font-extrabold text-lg">
+              <div className="w-12 h-12 rounded-xl bg-rose-500/20 flex items-center justify-center shrink-0 text-rose-300 font-bold text-lg">
                 30%
               </div>
               <div>
@@ -141,7 +140,7 @@ export function ConversionScienceSection() {
                 {/* Metric 1 */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-slate-950/80 border border-emerald-500/30">
                   <span className="text-xs sm:text-sm font-medium text-slate-300 block mb-1.5">Diferença de Faturamento</span>
-                  <div className="text-4xl sm:text-5xl font-extrabold text-emerald-400 tracking-tight mb-2">+39%</div>
+                  <div className="text-4xl sm:text-5xl font-bold text-emerald-400 tracking-tight mb-2">+39%</div>
                   <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
                     Receita média adicional gerada por pequenas empresas com site estruturado.
                   </p>
@@ -149,7 +148,7 @@ export function ConversionScienceSection() {
                 {/* Metric 2 */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-slate-950/80 border border-cyan-500/30">
                   <span className="text-xs sm:text-sm font-medium text-slate-300 block mb-1.5">Geração de Oportunidades</span>
-                  <div className="text-4xl sm:text-5xl font-extrabold text-cyan-400 tracking-tight mb-2">+40%</div>
+                  <div className="text-4xl sm:text-5xl font-bold text-cyan-400 tracking-tight mb-2">+40%</div>
                   <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
                     Aumento no volume de orçamentos e leads qualificados <span className="text-slate-400 font-medium">(SteadyWeb Study)</span>.
                   </p>
@@ -184,7 +183,7 @@ export function ConversionScienceSection() {
                     <span className="text-xs sm:text-sm font-semibold text-slate-300 uppercase tracking-wider block mb-1">
                       Receita Deixada na Mesa / Mês
                     </span>
-                    <span className="text-xl sm:text-2xl font-extrabold text-amber-300">
+                    <span className="text-xl sm:text-2xl font-bold text-amber-300">
                       + R$ {ganhoPotencialMes.toLocaleString("pt-BR")}
                     </span>
                   </div>
@@ -192,7 +191,7 @@ export function ConversionScienceSection() {
                     <span className="text-xs sm:text-sm font-semibold text-rose-300 uppercase tracking-wider block mb-1">
                       Vazamento Anual Estimado
                     </span>
-                    <span className="text-xl sm:text-2xl font-extrabold text-rose-400">
+                    <span className="text-xl sm:text-2xl font-bold text-rose-400">
                       - R$ {perdaAnualEstimada.toLocaleString("pt-BR")} / ano
                     </span>
                   </div>
@@ -228,7 +227,7 @@ export function ConversionScienceSection() {
                 <div className="space-y-1.5">
                   <div className="flex justify-between text-sm sm:text-base font-semibold">
                     <span className="text-cyan-300">Site Oficial Próprio</span>
-                    <span className="text-cyan-400 font-extrabold">84%</span>
+                    <span className="text-cyan-400 font-bold">84%</span>
                   </div>
                   <div className="w-full h-4 bg-slate-950 rounded-full overflow-hidden border border-white/10">
                     <div className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full w-[84%]" />
@@ -272,7 +271,7 @@ export function ConversionScienceSection() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
                 <div className="p-5 sm:p-6 rounded-2xl bg-slate-950/80 border border-white/15">
-                  <span className="text-4xl sm:text-5xl font-extrabold text-white block mb-2 tracking-tight">79%</span>
+                  <span className="text-4xl sm:text-5xl font-bold text-white block mb-2 tracking-tight">79%</span>
                   <span className="text-sm font-bold text-purple-300 block mb-2">No Brasil (PwC)</span>
                   <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
                     Pesquisam no Google antes de realizar qualquer compra local ou contratar serviço.
@@ -280,7 +279,7 @@ export function ConversionScienceSection() {
                 </div>
 
                 <div className="p-5 sm:p-6 rounded-2xl bg-slate-950/80 border border-white/15">
-                  <span className="text-4xl sm:text-5xl font-extrabold text-white block mb-2 tracking-tight">98%</span>
+                  <span className="text-4xl sm:text-5xl font-bold text-white block mb-2 tracking-tight">98%</span>
                   <span className="text-xs sm:text-sm font-bold text-cyan-300 block mb-2">Busca Local (BrightLocal)</span>
                   <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
                     Pesquisam online antes de visitar a loja física, ligar ou pedir orçamento por WhatsApp.

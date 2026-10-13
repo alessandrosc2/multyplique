@@ -141,14 +141,13 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         {/* Header Section */}
         <div className="w-full max-w-3xl mb-14 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+          <span className="text-xs sm:text-sm font-semibold text-cyan-400 uppercase tracking-widest block mb-3">
             Adaptável a Qualquer Segmento
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight leading-tight">
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight leading-tight">
             {title}
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 font-normal max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-300 font-normal max-w-2xl mx-auto leading-relaxed">
             {subtitle}
           </p>
         </div>
@@ -212,7 +211,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
                       <span className="text-xs font-bold uppercase tracking-wider text-cyan-300 block">
                         {option.category}
                       </span>
-                      <h3 className="font-extrabold text-xl text-white drop-shadow-md">
+                      <h3 className="font-bold text-xl text-white drop-shadow-md tracking-tight">
                         {option.title}
                       </h3>
                     </div>

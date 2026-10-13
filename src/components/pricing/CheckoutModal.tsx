@@ -154,7 +154,7 @@ export function CheckoutModal({
             </div>
             <div className="text-right">
               <span className="text-[10px] text-slate-400 uppercase block">Total</span>
-              <span className="text-2xl font-black text-cyan-400">
+              <span className="text-2xl font-bold tracking-tight text-cyan-400">
                 R$ {totalPrice.toFixed(2).replace(".", ",")}
               </span>
             </div>

@@ -31,7 +31,7 @@ export function ChoiceSection() {
             <span>🛡️ 100% Sem Risco • Pague Só se Aprovar</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-5 text-white leading-[1.15]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-5 text-white leading-tight">
             Peça Seu Site Feito por{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-cyan-300 to-teal-200">
               Nossos Especialistas
@@ -77,7 +77,7 @@ export function ChoiceSection() {
               
               {/* Passo 1 */}
               <div className="p-5 sm:p-6 rounded-2xl bg-slate-800/50 border border-white/5 hover:border-cyan-500/30 transition-all">
-                <div className="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-300 font-black flex items-center justify-center mb-4 text-sm border border-cyan-500/30">
+                <div className="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-300 font-bold flex items-center justify-center mb-4 text-sm border border-cyan-500/30">
                   01
                 </div>
                 <div className="flex items-center gap-2 mb-2">
@@ -91,7 +91,7 @@ export function ChoiceSection() {
 
               {/* Passo 2 */}
               <div className="p-5 sm:p-6 rounded-2xl bg-slate-800/50 border border-white/5 hover:border-emerald-500/30 transition-all">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-300 font-black flex items-center justify-center mb-4 text-sm border border-emerald-500/30">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-300 font-bold flex items-center justify-center mb-4 text-sm border border-emerald-500/30">
                   02
                 </div>
                 <div className="flex items-center gap-2 mb-2">
@@ -105,7 +105,7 @@ export function ChoiceSection() {
 
               {/* Passo 3 */}
               <div className="p-5 sm:p-6 rounded-2xl bg-slate-800/50 border border-emerald-500/30 bg-emerald-950/20 transition-all">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500 text-slate-950 font-black flex items-center justify-center mb-4 text-sm shadow-md shadow-emerald-500/30">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500 text-slate-950 font-bold flex items-center justify-center mb-4 text-sm shadow-md shadow-emerald-500/30">
                   03
                 </div>
                 <div className="flex items-center gap-2 mb-2">
@@ -175,7 +175,7 @@ export function ChoiceSection() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={trackWhatsAppClick}
-              className="w-full sm:w-auto px-8 py-4 sm:py-5 rounded-2xl font-extrabold text-base bg-emerald-400 hover:bg-emerald-300 text-slate-950 shadow-xl shadow-emerald-500/25 transition-all transform hover:-translate-y-0.5 cursor-pointer inline-flex items-center justify-center gap-3 active:scale-[0.98] shrink-0"
+              className="w-full sm:w-auto px-8 py-4 sm:py-5 rounded-2xl font-bold text-base bg-emerald-400 hover:bg-emerald-300 text-slate-950 shadow-xl shadow-emerald-500/25 transition-all transform hover:-translate-y-0.5 cursor-pointer inline-flex items-center justify-center gap-3 active:scale-[0.98] shrink-0"
             >
               <MessageCircle className="w-5 h-5 text-slate-950 fill-slate-950" />
               <span>Solicitar Meu Site Sem Pagar Nada Antes</span>

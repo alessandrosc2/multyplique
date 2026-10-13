@@ -71,7 +71,7 @@ export default function Success() {
           <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
             Pagamento Confirmado
           </span>
-          <h1 className="text-3xl font-extrabold text-white mt-2 mb-4">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mt-2 mb-4">
             Seja bem-vindo(a) ao Seu Site Único!
           </h1>
           <p className="text-slate-300 text-sm leading-relaxed">

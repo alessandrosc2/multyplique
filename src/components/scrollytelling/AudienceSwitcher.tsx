@@ -166,7 +166,7 @@ export function AudienceSwitcher() {
 
                 <div className="p-4 rounded-xl bg-black/40 border border-emerald-500/20 text-center mb-4">
                   <span className="text-xs text-slate-400">Potencial de Renda Extra Mensal:</span>
-                  <div className="text-3xl sm:text-4xl font-extrabold text-emerald-400 mt-1">
+                  <div className="text-3xl sm:text-4xl font-bold text-emerald-400 mt-1">
                     R$ {totalEarnings.toLocaleString('pt-BR')},00
                   </div>
                 </div>
