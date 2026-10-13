@@ -389,46 +389,6 @@ export function ConversionScienceSection() {
           </div>
         </div>
 
-        {/* 4. Call to Action (CTA) Final de Conversão */}
-        <div className="relative rounded-3xl bg-gradient-to-r from-slate-900 via-cyan-950/70 to-slate-900 border border-cyan-500/40 p-8 sm:p-14 text-center backdrop-blur-md overflow-hidden shadow-[0_0_60px_rgba(6,182,212,0.15)]">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-          
-          <div className="relative max-w-3xl mx-auto space-y-6">
-            <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-cyan-300 bg-cyan-500/15 px-4 py-2 rounded-full border border-cyan-500/30 inline-block">
-              Decisão Estratégica
-            </span>
-
-            <h3 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-              O custo de um site é pago em poucos dias. <br className="hidden sm:inline" />
-              O custo de <span className="text-rose-400 font-extrabold">não ter um site</span> continua sangrando todos os meses.
-            </h3>
-
-            <p className="text-slate-200 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-normal">
-              Com o método <strong className="text-white font-bold">Seu Site Único</strong>, você implementa seu domínio corporativo profissional guiado por IA em minutos, sem depender de programadores caros ou meses de espera.
-            </p>
-
-            <div className="pt-4 flex flex-col items-center justify-center max-w-xl mx-auto">
-              <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-cyan-300 mb-3 text-center">
-                <span>Estanque o vazamento de vendas e feche mais negócios</span>
-                <ArrowDown className="w-3.5 h-3.5 text-cyan-400 animate-bounce" />
-              </div>
-
-              <button
-                type="button"
-                onClick={scrollToPricing}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 hover:brightness-110 text-slate-950 font-bold text-sm sm:text-base shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 active:scale-[0.98] group cursor-pointer"
-              >
-                <span className="whitespace-nowrap">Criar Meu Site Profissional</span>
-                <ArrowRight className="w-4 h-4 text-slate-950 group-hover:translate-x-1.5 transition-transform" />
-              </button>
-            </div>
-
-            <p className="text-xs sm:text-sm font-medium text-slate-300 pt-2">
-              Acesso imediato ao manual prático interativo · Garantia incondicional de 7 dias · Pagamento único
-            </p>
-          </div>
-        </div>
-
       </div>
     </section>
   );

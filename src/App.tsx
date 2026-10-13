@@ -4,7 +4,7 @@ import { SocialProofSection } from "@/components/pricing/SocialProofSection";
 import { WordRevealSection } from "@/components/scrollytelling/WordRevealSection";
 import { ConversionScienceSection } from "@/components/analytics/ConversionScienceSection";
 import { InteractiveSelector } from "@/components/ui/interactive-selector";
-import { AudienceSwitcher } from "@/components/scrollytelling/AudienceSwitcher";
+import { ResultadosSection } from "@/components/showcase/ResultadosSection";
 import { PricingSection } from "@/components/pricing/PricingSection";
 import { ShieldCheck, Heart, Sparkles, MessageCircle, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -30,10 +30,8 @@ export default function App() {
       {/* Beat 4: A Ciência dos Dados & O Custo Invisível de Não Ter um Site (CRO/Bento Grid) */}
       <ConversionScienceSection />
 
-      {/* Beat 5: Dois Públicos, Um Só Produto & Calculadora Interativa de Renda Extra */}
-      <div id="calculadora">
-        <AudienceSwitcher />
-      </div>
+      {/* Beat 5: Vitrine & Resultados — O Nível que Sai Daqui */}
+      <ResultadosSection />
 
       {/* Beat 6: Tabela de Preços, Order Bump, Saída WhatsApp e FAQ */}
       
@@ -62,7 +60,7 @@ export default function App() {
               <a href="#metodo" className="hover:text-cyan-400 transition-colors">O Método</a>
               <a href="#nichos" className="hover:text-cyan-400 transition-colors">Nichos</a>
               <a href="#dados-conversao" className="hover:text-cyan-400 transition-colors">Por Que Ter Site</a>
-              <a href="#calculadora" className="hover:text-cyan-400 transition-colors">Calculadora</a>
+              <a href="#resultados" className="hover:text-cyan-400 transition-colors">Resultados</a>
               <a href="#pricing" className="hover:text-cyan-400 transition-colors">Planos</a>
               <a
                 href="https://wa.me/5583993595124?text=Ol%C3%A1!%20Tenho%20d%C3%BAvidas%20sobre%20o%20Site-IA."

@@ -121,7 +121,7 @@ export function ScrollGlobe({
       subtitle: "Você Avalia o Projeto Pronto no Ar e Só Paga se Aprovar",
       description: "Nós criamos o design, a copy persuasiva e toda a estrutura técnica da sua empresa. Você avalia o projeto funcionando no seu celular e só paga se gostar e aprovar o resultado.",
       align: "left",
-      icon: <ShieldCheck className="w-5 h-5 text-emerald-400" />,
+      icon: <ShieldCheck className="w-5 h-5 text-cyan-400" />,
       features: [
         { 
           title: "🛡️ 100% Sem Risco (Pague Só se Aprovar)", 
@@ -329,7 +329,7 @@ export function ScrollGlobe({
           <a href="#metodo" className="hover:text-cyan-400 transition-colors">O Método</a>
           <a href="#nichos" className="hover:text-cyan-400 transition-colors">Exemplos de Nichos</a>
           <a href="#dados-conversao" className="hover:text-cyan-400 transition-colors">Diagnóstico & Dados</a>
-          <a href="#calculadora" className="hover:text-cyan-400 transition-colors">Renda Extra</a>
+          <a href="#resultados" className="hover:text-cyan-400 transition-colors">Resultados</a>
           <a href="#pricing" className="hover:text-cyan-400 transition-colors">Planos & Preços</a>
         </nav>
 
@@ -338,19 +338,14 @@ export function ScrollGlobe({
           <a href="#metodo" className="hover:text-cyan-400 transition-colors">Método</a>
           <a href="#nichos" className="hover:text-cyan-400 transition-colors">Nichos</a>
           <a href="#dados-conversao" className="hover:text-cyan-400 transition-colors">Diagnóstico</a>
+          <a href="#resultados" className="hover:text-cyan-400 transition-colors">Resultados</a>
           <a href="#pricing" className="hover:text-cyan-400 transition-colors">Planos</a>
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
           <a
-            href="/login"
-            className="hidden sm:inline-flex px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-cyan-500/30 text-cyan-400 text-xs sm:text-sm font-semibold hover:bg-cyan-500/10 hover:border-cyan-500/50 transition-all whitespace-nowrap"
-          >
-            Acessar Área
-          </a>
-          <a
             href="#pricing"
-            className="px-3.5 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs sm:text-sm font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all shadow-sm shadow-cyan-500/25 hover:scale-105 whitespace-nowrap"
+            className="px-3.5 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-gradient-to-r from-blue-600 via-cyan-400 to-cyan-300 text-slate-950 text-xs sm:text-sm font-bold hover:brightness-110 transition-all shadow-sm shadow-cyan-500/25 hover:scale-105 whitespace-nowrap"
           >
             Começar Agora
           </a>
@@ -393,11 +388,11 @@ export function ScrollGlobe({
               Por Que Ter Site (Diagnóstico)
             </a>
             <a 
-              href="#calculadora" 
+              href="#resultados" 
               onClick={() => setMobileMenuOpen(false)}
               className="text-base font-semibold text-slate-200 hover:text-cyan-400 py-2 border-b border-white/5 transition-colors"
             >
-              Renda Extra
+              Resultados
             </a>
             <a 
               href="#pricing" 
@@ -421,7 +416,7 @@ export function ScrollGlobe({
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs"
+              className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold text-xs"
             >
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp: (83) 99359-5124</span>
@@ -537,9 +532,7 @@ export function ScrollGlobe({
               {/* Badge */}
               <div className={cn(
                 "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-5 backdrop-blur-md shadow-sm",
-                isBlock2
-                  ? "bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 shadow-emerald-950/40"
-                  : "bg-cyan-950/70 border border-cyan-500/30 text-cyan-300",
+                "bg-cyan-950/80 border border-cyan-400/40 text-cyan-300 shadow-cyan-950/40",
                 section.align === "center" && "mx-auto",
                 section.align === "right" && "ml-auto"
               )}>
@@ -573,18 +566,10 @@ export function ScrollGlobe({
                 )}>
                   {section.subtitle ? (
                     <div className="space-y-2">
-                      <span className={cn(
-                        "block pb-1 leading-tight",
-                        isBlock2 
-                          ? "bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent"
-                          : "bg-gradient-to-r from-white via-slate-100 to-slate-200 bg-clip-text text-transparent"
-                      )}>
+                      <span className="block pb-1 leading-tight bg-gradient-to-r from-white via-slate-100 to-slate-200 bg-clip-text text-transparent">
                         {section.title}
                       </span>
-                      <span className={cn(
-                        "text-[0.55em] font-bold tracking-wider uppercase block pb-1",
-                        isBlock2 ? "text-emerald-400" : "text-cyan-400"
-                      )}>
+                      <span className="text-[0.55em] font-bold tracking-wider uppercase block pb-1 text-cyan-400">
                         {section.subtitle}
                       </span>
                     </div>
@@ -619,8 +604,8 @@ export function ScrollGlobe({
 
               {/* Mini-timeline exclusiva do Bloco 02 */}
               {isBlock2 && (
-                <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-emerald-500/30 backdrop-blur-md shadow-xl">
-                  <div className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-3 flex items-center gap-2">
+                <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md shadow-xl">
+                  <div className="text-xs font-bold uppercase tracking-wider text-cyan-400 mb-3 flex items-center gap-2">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>O Processo Risco Zero em 3 Passos Simples:</span>
                   </div>
@@ -631,13 +616,13 @@ export function ScrollGlobe({
                       <span className="text-slate-400">Dados da empresa e serviços em 5 minutos</span>
                     </div>
                     <div className="p-3 rounded-xl bg-slate-800/60 border border-white/5">
-                      <span className="inline-block w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold text-center leading-5 mb-1.5">2</span>
+                      <span className="inline-block w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 font-bold text-center leading-5 mb-1.5">2</span>
                       <strong className="text-white block mb-0.5">Criamos Tudo</strong>
                       <span className="text-slate-400">Design premium, copy e integrações</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
-                      <span className="inline-block w-5 h-5 rounded-full bg-emerald-500 text-slate-950 font-bold text-center leading-5 mb-1.5">3</span>
-                      <strong className="text-emerald-300 block mb-0.5">Aprove e Pague</strong>
+                    <div className="p-3 rounded-xl bg-blue-950/40 border border-cyan-500/40">
+                      <span className="inline-block w-5 h-5 rounded-full bg-cyan-400 text-slate-950 font-bold text-center leading-5 mb-1.5">3</span>
+                      <strong className="text-cyan-300 block mb-0.5">Aprove e Pague</strong>
                       <span className="text-slate-300">Só investe após aprovar o projeto no ar</span>
                     </div>
                   </div>
@@ -653,21 +638,13 @@ export function ScrollGlobe({
                       className={cn(
                         "group p-4 sm:p-5 rounded-xl border transition-all duration-300",
                         "bg-slate-900/70 backdrop-blur-md border-slate-800/80",
-                        isBlock2 
-                          ? "hover:border-emerald-500/40 hover:bg-slate-900/90 hover:shadow-lg hover:shadow-emerald-950/40"
-                          : "hover:border-cyan-500/40 hover:bg-slate-900/90 hover:shadow-lg hover:shadow-cyan-950/40"
+                        "hover:border-cyan-400/50 hover:bg-slate-900/90 hover:shadow-lg hover:shadow-cyan-950/40"
                       )}
                     >
                       <div className="flex items-start gap-3.5">
-                        <div className={cn(
-                          "w-2 h-2 rounded-full mt-2 shrink-0 group-hover:scale-125 transition-transform",
-                          isBlock2 ? "bg-emerald-400" : "bg-cyan-400"
-                        )} />
+                        <div className="w-2 h-2 rounded-full mt-2 shrink-0 bg-cyan-400 group-hover:scale-125 transition-transform" />
                         <div className="space-y-1 min-w-0">
-                          <h3 className={cn(
-                            "font-bold text-white text-base sm:text-lg transition-colors",
-                            isBlock2 ? "group-hover:text-emerald-300" : "group-hover:text-cyan-300"
-                          )}>
+                          <h3 className="font-bold text-white text-base sm:text-lg transition-colors group-hover:text-cyan-300">
                             {feature.title}
                           </h3>
                           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
@@ -708,7 +685,7 @@ export function ScrollGlobe({
                           className={cn(
                             "inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold transition-all duration-300 text-sm sm:text-base cursor-pointer shadow-xl",
                             isWhatsApp
-                              ? "bg-emerald-400 hover:bg-emerald-300 text-slate-950 shadow-emerald-500/30 hover:scale-[1.02] active:scale-[0.98]"
+                              ? "bg-gradient-to-r from-blue-600 via-cyan-400 to-cyan-300 hover:brightness-110 text-slate-950 font-extrabold shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98]"
                               : "bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 shadow-cyan-950/50 hover:scale-[1.02] active:scale-[0.98]"
                           )}
                         >
