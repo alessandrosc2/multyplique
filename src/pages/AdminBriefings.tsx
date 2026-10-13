@@ -33,7 +33,7 @@ import {
 import { toast } from "sonner";
 import { auth, db } from "@/lib/firebase";
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { collection, query, where, getDocs, doc, updateDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, updateDoc, onSnapshot } from "firebase/firestore";
 
 interface ServiceItem {
   id?: string;
@@ -82,128 +82,110 @@ export default function AdminBriefings() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedBriefing, setSelectedBriefing] = useState<BriefingItem | null>(null);
 
-  // Monitor auth state
+  // Monitor auth state and real-time briefings sync
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    let unsubscribeSnapshot: (() => void) | null = null;
+
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       setIsAuthenticated(!!user);
       setAuthChecking(false);
-      if (user) {
+      
+      if (user && db) {
+        setIsLoading(true);
+        try {
+          const q = query(collection(db, "leads"), where("type", "==", "briefing"));
+          unsubscribeSnapshot = onSnapshot(q, (snapshot) => {
+            const items: BriefingItem[] = [];
+            snapshot.forEach((docSnap) => {
+              const data = docSnap.data();
+              items.push({
+                id: docSnap.id,
+                businessName: data.businessName || "Empresa sem nome",
+                ownerName: data.ownerName || "",
+                documentNumber: data.documentNumber || "",
+                segment: data.segment || "Geral",
+                cityState: data.cityState || "",
+                neighborhood: data.neighborhood || "",
+                whatsapp: data.whatsapp || "",
+                secondaryPhone: data.secondaryPhone || "",
+                instagram: data.instagram || "",
+                email: data.email || "",
+                fullAddress: data.fullAddress || "",
+                businessHours: data.businessHours || "",
+                services: data.services || [],
+                differentials: data.differentials || "",
+                colors: data.colors || "",
+                socialProof: data.socialProof || "",
+                targetAction: data.targetAction || "whatsapp",
+                observations: data.observations || "",
+                txtContent: data.txtContent || "",
+                status: data.status === "arquivado" ? "arquivado" : "ativo",
+                createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : new Date(data.createdAt || Date.now())
+              });
+            });
+
+            // Inclui cópias de contingência do localStorage se houver
+            try {
+              const local = JSON.parse(localStorage.getItem("multy_local_briefings") || "[]");
+              local.forEach((locItem: any) => {
+                if (!items.some(it => it.id === locItem.id || (it.businessName === locItem.businessName && it.whatsapp === locItem.whatsapp))) {
+                  items.push({
+                    id: locItem.id,
+                    businessName: locItem.businessName || "Empresa sem nome",
+                    ownerName: locItem.ownerName || "",
+                    documentNumber: locItem.documentNumber || "",
+                    segment: locItem.segment || "Geral",
+                    cityState: locItem.cityState || "",
+                    neighborhood: locItem.neighborhood || "",
+                    whatsapp: locItem.whatsapp || "",
+                    secondaryPhone: locItem.secondaryPhone || "",
+                    instagram: locItem.instagram || "",
+                    email: locItem.email || "",
+                    fullAddress: locItem.fullAddress || "",
+                    businessHours: locItem.businessHours || "",
+                    services: locItem.services || [],
+                    differentials: locItem.differentials || "",
+                    colors: locItem.colors || "",
+                    socialProof: locItem.socialProof || "",
+                    targetAction: locItem.targetAction || "whatsapp",
+                    observations: locItem.observations || "",
+                    txtContent: locItem.txtContent || "",
+                    status: locItem.status === "arquivado" ? "arquivado" : "ativo",
+                    createdAt: new Date(locItem.createdAt || Date.now())
+                  });
+                }
+              });
+            } catch {}
+
+            items.sort((a, b) => {
+              const timeA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+              const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+              return timeB - timeA;
+            });
+
+            setBriefings(items);
+            setIsLoading(false);
+          }, (err) => {
+            console.warn("Erro no listener em tempo real:", err);
+            fetchBriefings();
+          });
+        } catch (e) {
+          fetchBriefings();
+        }
+      } else if (user) {
         fetchBriefings();
       }
     });
-    return () => unsubscribe();
+
+    return () => {
+      unsubscribeAuth();
+      if (unsubscribeSnapshot) unsubscribeSnapshot();
+    };
   }, []);
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoggingIn(true);
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      toast.success("Login de Administrador realizado com sucesso!");
-    } catch (err: any) {
-      console.error("Erro no login:", err);
-      toast.error("Credenciais inválidas: " + (err.message || "Tente novamente."));
-    } finally {
-      setIsLoggingIn(false);
-    }
-  };
-
-  const handleLogout = async () => {
-    await signOut(auth);
-    setIsAuthenticated(false);
-    setBriefings([]);
-    toast.info("Sessão finalizada.");
-  };
-
-  const fetchBriefings = async () => {
-    setIsLoading(true);
-    try {
-      const items: BriefingItem[] = [];
-
-      // 1. Busca do Firestore
-      if (db) {
-        try {
-          const q = query(collection(db, "leads"), where("type", "==", "briefing"));
-          const snapshot = await getDocs(q);
-          snapshot.forEach((docSnap) => {
-            const data = docSnap.data();
-            items.push({
-              id: docSnap.id,
-              businessName: data.businessName || "Empresa sem nome",
-              ownerName: data.ownerName || "",
-              documentNumber: data.documentNumber || "",
-              segment: data.segment || "Geral",
-              cityState: data.cityState || "",
-              neighborhood: data.neighborhood || "",
-              whatsapp: data.whatsapp || "",
-              secondaryPhone: data.secondaryPhone || "",
-              instagram: data.instagram || "",
-              email: data.email || "",
-              fullAddress: data.fullAddress || "",
-              businessHours: data.businessHours || "",
-              services: data.services || [],
-              differentials: data.differentials || "",
-              colors: data.colors || "",
-              socialProof: data.socialProof || "",
-              targetAction: data.targetAction || "whatsapp",
-              observations: data.observations || "",
-              txtContent: data.txtContent || "",
-              status: data.status === "arquivado" ? "arquivado" : "ativo",
-              createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : new Date(data.createdAt || Date.now())
-            });
-          });
-        } catch (dbErr) {
-          console.warn("Erro ao buscar Firestore, lendo backup local:", dbErr);
-        }
-      }
-
-      // 2. Inclui cópias de contingência do localStorage
-      try {
-        const local = JSON.parse(localStorage.getItem("multy_local_briefings") || "[]");
-        local.forEach((locItem: any) => {
-          if (!items.some(it => it.id === locItem.id || (it.businessName === locItem.businessName && it.whatsapp === locItem.whatsapp))) {
-            items.push({
-              id: locItem.id,
-              businessName: locItem.businessName || "Empresa sem nome",
-              ownerName: locItem.ownerName || "",
-              documentNumber: locItem.documentNumber || "",
-              segment: locItem.segment || "Geral",
-              cityState: locItem.cityState || "",
-              neighborhood: locItem.neighborhood || "",
-              whatsapp: locItem.whatsapp || "",
-              secondaryPhone: locItem.secondaryPhone || "",
-              instagram: locItem.instagram || "",
-              email: locItem.email || "",
-              fullAddress: locItem.fullAddress || "",
-              businessHours: locItem.businessHours || "",
-              services: locItem.services || [],
-              differentials: locItem.differentials || "",
-              colors: locItem.colors || "",
-              socialProof: locItem.socialProof || "",
-              targetAction: locItem.targetAction || "whatsapp",
-              observations: locItem.observations || "",
-              txtContent: locItem.txtContent || "",
-              status: locItem.status === "arquivado" ? "arquivado" : "ativo",
-              createdAt: new Date(locItem.createdAt || Date.now())
-            });
-          }
-        });
-      } catch {}
-
-      // Ordena por data decrescente
-      items.sort((a, b) => {
-        const timeA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
-        const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
-        return timeB - timeA;
-      });
-
-      setBriefings(items);
-    } catch (err: any) {
-      console.error("Erro geral ao carregar briefings:", err);
-      toast.error("Erro ao carregar dados dos briefings.");
-    } finally {
-      setIsLoading(false);
-    }
+  const handleManualRefresh = async () => {
+    await fetchBriefings();
+    toast.success("Lista de briefings atualizada com sucesso!");
   };
 
   const handleToggleArchive = async (briefing: BriefingItem) => {
@@ -310,13 +292,17 @@ ESTRUTURA OBRIGATÓRIA DA PÁGINA:
 
   // Filtragem
   const filteredBriefings = briefings.filter(item => {
-    const matchesTab = item.status === activeTab;
+    const matchesTab = activeTab === "ativos" ? item.status === "ativo" : item.status === "arquivado";
+    const q = searchQuery.toLowerCase().trim();
     const matchesSearch = 
-      item.businessName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.segment.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.whatsapp.includes(searchQuery) ||
-      (item.cityState && item.cityState.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesTab && matchesSearch;
+      !q ||
+      (item.businessName && item.businessName.toLowerCase().includes(q)) ||
+      (item.ownerName && item.ownerName.toLowerCase().includes(q)) ||
+      (item.segment && item.segment.toLowerCase().includes(q)) ||
+      (item.whatsapp && String(item.whatsapp).includes(q)) ||
+      (item.cityState && item.cityState.toLowerCase().includes(q)) ||
+      (item.neighborhood && item.neighborhood.toLowerCase().includes(q));
+    return Boolean(matchesTab && matchesSearch);
   });
 
   const countAtivos = briefings.filter(b => b.status === "ativo").length;
@@ -523,12 +509,13 @@ ESTRUTURA OBRIGATÓRIA DA PÁGINA:
             </div>
 
             <button
-              onClick={fetchBriefings}
+              onClick={handleManualRefresh}
               disabled={isLoading}
-              className="h-10 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-white/10 transition-colors inline-flex items-center justify-center cursor-pointer"
-              title="Recarregar briefings"
+              className="h-10 px-4 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-cyan-400 hover:brightness-110 text-slate-950 font-bold text-xs inline-flex items-center gap-2 shadow-md shadow-cyan-500/20 transition-all cursor-pointer disabled:opacity-50 shrink-0"
+              title="Recarregar briefings recebidos"
             >
-              <RefreshCw className={`w-4 h-4 ${isLoading ? "animate-spin text-cyan-400" : ""}`} />
+              <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin text-slate-950" : ""}`} />
+              <span>Atualizar Lista</span>
             </button>
           </div>
 
